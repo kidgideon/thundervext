@@ -1,0 +1,204 @@
+.authpage-interface {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #f5f1fa 60%, #a23cf4 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 80px;
+}
+
+.authpage-form {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 4px 32px rgba(162,60,244,0.10);
+    padding: 40px 32px 32px 32px;
+    max-width: 400px;
+    width: 100%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.authpage-formInputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-sizing: border-box;
+}
+
+.authpage-formInputs input[type="email"],
+.authpage-formInputs input[type="password"],
+.authpage-formInputs input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 16px;
+    border: 1.5px solid #e3d7f7;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    background: #faf8fd;
+    color: #1f0b3a;
+    transition: border 0.2s;
+}
+
+.authpage-formInputs input:focus {
+    border: 1.5px solid #a23cf4;
+    background: #fff;
+}
+
+.authpage-passwordInputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.authpage-togglePassword {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #a23cf4;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    transition: color 0.2s;
+}
+
+.authpage-togglePassword:hover {
+    color: #1f0b3a;
+    opacity: 1;
+}
+
+.authpage-forgotRow {
+    margin-top: 4px;
+    text-align: right;
+}
+
+.authpage-forgotLink {
+    color: #a23cf4;
+    font-size: 0.98rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.authpage-forgotLink:hover {
+    color: #1f0b3a;
+    text-decoration: underline;
+}
+
+.authpage-loginBtn {
+    width: 100%;
+    background: linear-gradient(90deg, #a23cf4 60%, #1f0b3a 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 13px 0;
+    font-size: 1.08rem;
+    font-weight: bold;
+    margin-top: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.authpage-loginBtn:hover {
+    background: linear-gradient(90deg, #1f0b3a 60%, #a23cf4 100%);
+}
+
+.authpage-orDivider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 18px 0 10px 0;
+}
+
+.authpage-orDivider span {
+    flex: 1;
+    height: 1px;
+    background: #e3d7f7;
+}
+
+.authpage-orDivider p {
+    margin: 0;
+    color: #a23cf4;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.authpage-googleBtn {
+    width: 100%;
+    background: #fff;
+    color: #1f0b3a;
+    border: 1.5px solid #a23cf4;
+    border-radius: 12px;
+    padding: 12px 0;
+    font-size: 1.05rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.authpage-googleBtn:hover {
+    background: #a23cf4;
+    color: #fff;
+}
+
+.authpage-loginRow {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 1rem;
+    color: #1f0b3a;
+}
+
+.authpage-loginRow a {
+    color: #a23cf4;
+    text-decoration: underline;
+    margin-left: 4px;
+}
+
+@media (max-width: 600px) {
+    .authpage-form {
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0 0 18px 0;
+        max-width: 100vw;
+        margin: 0;
+        align-items: stretch;
+    }
+
+    .authpage-interface {
+        background: white;
+    }
+    .authpage-formInputs {
+        padding: 0 5vw;
+        gap: 14px;
+    }
+    .authpage-formInputs input[type="email"],
+    .authpage-formInputs input[type="password"] {
+        font-size: 0.98rem;
+        padding: 12px 12px;
+    }
+    .authpage-topLayer {
+        font-size: 1.1rem;
+        padding: 20px 5vw 0 5vw;
+    }
+    .iconText {
+        font-size: 1rem;
+    }
+    .authpage-loginBtn,
+    .authpage-googleBtn {
+        font-size: 0.98rem;
+        padding: 12px 0;
+    }
+}

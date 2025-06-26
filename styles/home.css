@@ -1,0 +1,482 @@
+/* HOMEPAGE STRUCTURE */
+.homepageInterface {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 80px;
+}
+
+.homePageNav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 70px;
+    background-color: #1f0b3a;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+    color: white;
+    z-index: 1000;
+}
+
+.homePageNav a {
+    color: white;
+    text-decoration: none;
+}
+
+.standardBtn {
+    background-color: #a23cf4;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    margin: 2px;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.standardBtn:hover {
+    background-color: #bb67ff;
+}
+
+.navStart{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.navServiceLinks {
+     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.navEnd {
+     width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row;
+}
+.navEnd p {
+    margin: 5px;
+}
+
+.iconSection {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.usFlag {
+    width: 30px;
+    margin: 20px;
+}
+
+.homePageFirstSection,
+.homePageFourthSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.homePageFirstSection h3 {
+    width: 50%;
+    text-align: center;
+    font-size: 150%;
+    color: rgb(26, 26, 26);
+}
+
+.homePageFirstSection h1 {
+    font-size: 250%;
+}
+
+.standardButton,
+.paleButtonBig {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.5s ease-in;
+}
+
+
+.standardButton {
+    background-color: #1f0b3a;
+}
+.standardButton:hover {
+    background-color: #a23cf4;
+}
+.paleButtonBig {
+    background-color: #a23cf4;
+}
+
+.homePageSecondSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgb(231, 231, 231);
+    height: 500px;
+    margin-top: 30px;
+}
+
+.animationPoint {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.animated-img {
+    position: absolute;
+    transition: transform 0.7s cubic-bezier(.77,0,.18,1), opacity 0.7s cubic-bezier(.77,0,.18,1);
+    opacity: 1;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
+    will-change: transform, opacity;
+    margin-top: -100px;
+}
+
+.animationPoint.fan-out .img-netflix { transform: translate(0%, 0%) rotate(-10deg) scale(1.1); }
+.animationPoint.fan-out .img-ishares { transform: translate(18%, 18%) rotate(-5deg) scale(1); }
+.animationPoint.fan-out .img-apple { transform: translate(36%, 36%) rotate(0deg) scale(1); }
+.animationPoint.fan-out .img-airbnb { transform: translate(54%, 54%) rotate(5deg) scale(1); }
+.animationPoint.fan-out .img-bitcoin { transform: translate(72%, 72%) rotate(10deg) scale(3); }
+.animationPoint.fan-out .img-etherum { transform: translate(90%, 90%) rotate(15deg) scale(3); }
+.animationPoint.fan-out .img-spdr { transform: translate(108%, 108%) rotate(20deg) scale(1); }
+
+.animationPoint.stacked .animated-img {
+    transition: transform 0.7s cubic-bezier(.77,0,.18,1), opacity 0.7s cubic-bezier(.77,0,.18,1);
+}
+.animationPoint.stacked .img-netflix { transform: translate(0%, 0%) rotate(-10deg) scale(1); }
+.animationPoint.stacked .img-ishares { transform: translate(4%, 4%) rotate(-5deg) scale(0.98); }
+.animationPoint.stacked .img-apple { transform: translate(8%, 8%) rotate(0deg) scale(0.96); }
+.animationPoint.stacked .img-airbnb { transform: translate(12%, 12%) rotate(5deg) scale(0.94); }
+.animationPoint.stacked .img-bitcoin { transform: translate(16%, 16%) rotate(10deg) scale(2); }
+.animationPoint.stacked .img-etherum { transform: translate(20%, 20%) rotate(15deg) scale(2); }
+.animationPoint.stacked .img-spdr { transform: translate(24%, 24%) rotate(20deg) scale(0.88); }
+
+.img-bitcoin img, .img-etherum img {
+    width: 70px !important;
+    height: 70px !important;
+}
+.animated-img.outside {
+    opacity: 0.15;
+    pointer-events: none;
+    filter: blur(2px) grayscale(60%);
+}
+
+.discoveryArea {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+}
+
+.homrPageThirdSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.imageSectionThird {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.imageSectionThird img {
+    width: 400px;
+}
+
+.textSectionThird {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+}
+.textSectionThird p {
+    font-size: 150%;
+    color: rgb(48, 48, 48);
+}
+
+.homePageFourthSection {
+    background-color: rgb(231, 231, 231);
+    padding: 10px 0 40px 0;
+}
+
+.boxesDirection {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.boxes {
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 30px 0 rgba(0,0,0,.1);
+    border-radius: 30px;
+}
+.boxes i {
+    font-size: 100px;
+    color: #a23cf4;
+}
+.boxes p {
+    text-align: center;
+}
+
+/* Footer */
+.footer-modern {
+    width: 100%;
+    background: linear-gradient(90deg, #1f0b3a 60%, #a23cf4 100%);
+    color: #fff;
+    padding: 40px 0 10px 0;
+    font-size: 1rem;
+    box-shadow: 0 -2px 24px 0 rgba(162,60,244,0.08);
+}
+.footer-modern-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+.footer-brand {
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.footer-brand .icon {
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+.footer-brand span {
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+}
+.footer-links {
+    flex: 2 1 400px;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.footer-links h4 {
+    color: #fff;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+.footer-links a {
+    color: #e0d7f7;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+.footer-links a:hover {
+    color: #fff;
+}
+.footer-social {
+    flex: 1 1 120px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.footer-social a {
+    color: #fff;
+    font-size: 1.3rem;
+    transition: color 0.2s;
+}
+.footer-social a:hover {
+    color: #a23cf4;
+}
+.footer-modern-bottom {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.98rem;
+    color: #e0d7f7;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+
+/* Hamburger menu */
+.hamburgerBtn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    z-index: 1101;
+    display: none;
+}
+
+
+/* Responsive Design */
+.desktopOnly { display: flex; }
+.mobileOnly { display: none }
+
+@media (max-width: 900px) {
+    .animationPoint { width: 90vw; min-width: 200px; }
+    .footer-modern-content { flex-direction: column; align-items: center; gap: 20px; }
+    .footer-links { flex-direction: column; align-items: center; gap: 20px; }
+    .footer-social { justify-content: center; }
+    .navEnd{
+        width: 10%;
+    }
+    
+/* Hamburger menu */
+.hamburgerBtn {
+    display: block;
+}
+
+}
+@media (max-width: 800px) {
+    .navServiceLinks.desktopOnly,
+    .navEnd .desktopOnly,
+    .usFlag.desktopOnly {
+        display: none !important;
+    }
+    .mobileOnly {
+        display: inline-flex !important;
+    }
+    .homePageNav {
+        height: 60px;
+        padding: 0 10px;
+    }
+    .iconSection h3.iconText {
+        font-size: 1.1rem;
+    }
+    .hamburgerBtn {
+    display: block;
+}
+ .navEnd{
+        width: 10%;
+    }
+}
+@media (max-width: 600px) {
+    .animationPoint { width: 220px; height: 220px; }
+    .animated-img img { width: 40px !important; height: 40px !important; }
+    .img-bitcoin img, .img-etherum img { width: 35px !important; height: 35px !important; }
+    .hamburgerBtn {
+    display: block;
+}
+ .navEnd{
+        width: 10%;
+    }
+}
+
+/* Mobile Menu */
+.mobileMenu {
+    position: fixed;
+    top: 0; right: 0; left: 0; bottom: 0;
+    width: 100vw;
+    background: rgba(31,11,58,0.97);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    animation: fadeInMenu 0.3s ease-out forwards;
+}
+
+.mobileMenuLinks {
+    width: 80vw;
+    max-width: 320px;
+    background: #fff;
+    color: #1f0b3a;
+    box-shadow: -2px 0 24px 0 rgba(162,60,244,0.08);
+    padding: 16px 24px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-height: 100vh;
+    animation: slideInMenu 0.3s ease-out forwards;
+
+}
+
+.mobileMenuLinks a {
+    color: #a23cf4;
+    font-size: 1.15rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+.mobileMenuLinks a:hover {
+    color: #1f0b3a;
+}
+.mobileMenuLinks .standardBtn {
+    margin-top: 10px;
+    font-size: 1.08rem;
+    width: 100%;
+}
+
+/* Close button */
+.closeMenuBtn {
+    background: none;
+    border: none;
+    color: #a23cf4;
+    font-size: 2.2rem;
+    margin-left: auto;
+    padding: 18px 18px 0 0;
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeInMenu {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideInMenu {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
