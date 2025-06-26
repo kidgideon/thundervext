@@ -205,6 +205,110 @@
     text-decoration: underline;
     margin-left: 4px;
 }
+/* 1. Frosted glass modal container */
+.codeModal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* 2. Inner modal card with soft translucency */
+.codeModalContent {
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* 3. Modal heading + subtext */
+.codeModalContent h4 {
+  color: black;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.codeModalContent p {
+  font-size: 0.95rem;
+  color: rgb(90, 90, 90);
+  margin-bottom: 16px;
+}
+
+/* 4. Layout for input boxes */
+.codeBoxes {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+/* 5. Glassy individual inputs */
+.codeInput {
+  width: 42px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+  color: black;
+  outline: none;
+  transition: border 0.2s ease, background 0.3s ease;
+}
+
+.codeInput:focus {
+  border: 2px solid #a23cf4;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 6. Verify button - gradient glass harmony */
+.verifyBtn {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, rgba(162, 60, 244, 0.9), rgba(31, 11, 58, 0.9));
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(162, 60, 244, 0.2);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.verifyBtn:hover {
+  transform: translateY(-1px);
+}
+
+.verifyBtn:disabled {
+  background: black;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: not-allowed;
+  box-shadow: none;
+  transition: 0.3s;
+}
+
 
 @media (max-width: 600px) {
     .signup-interface {
