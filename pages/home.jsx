@@ -7,7 +7,7 @@ import ishares from "../images/ishares-colored.svg"
 import netflix from "../images/netflix.svg"
 import spdr from "../images/spdr-colored.svg"
 import crypto from "../images/crypto2x.jpg"
-import Footer from "../components/Footer";
+import Footer from "../components/footer";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom"; // Add this import
 
