@@ -1,0 +1,123 @@
+.invested-assets-container {
+  width: 100%;
+  background-color: white;
+  color:  black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.invested-assets-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.invested-assets-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.asset-card {
+  background-color: #1a1a1a;
+  border: 1px solid #2c2c2c;
+  color: white;
+  border-radius: 14px;
+  padding: 20px;
+  width: 250px;
+  height: 180px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.asset-card:hover {
+  border-color: #00ffb3;
+  box-shadow: 0 0 20px rgba(0, 255, 179, 0.2);
+}
+
+.asset-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.asset-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.asset-value {
+  font-size: 1rem;
+  color: #00ff8c;
+  font-weight: 500;
+}
+
+.asset-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.asset-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #2e2e2e;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.asset-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff8c, #00c2ff);
+  transition: width 0.4s ease-in-out;
+}
+
+.asset-percent {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 5px;
+}
+
+.asset-hover-info {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background-color: rgba(20, 20, 20, 0.95);
+  padding: 15px;
+  font-size: 0.85rem;
+  color: #ccc;
+  transition: bottom 0.3s ease;
+  border-top: 1px solid #2c2c2c;
+}
+
+.asset-card:hover .asset-hover-info {
+  bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .asset-card {
+    width: 90%;
+    height: auto;
+  }
+
+  .asset-hover-info {
+    position: static;
+    border-top: none;
+    padding-top: 10px;
+    margin-top: 10px;
+    background: transparent;
+    color: #bbb;
+  }
+
+  .asset-card:hover .asset-hover-info {
+    bottom: unset;
+  }
+}

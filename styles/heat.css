@@ -1,0 +1,26 @@
+.geo-map-container {
+  background: white;
+  border-radius: 10px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.geo-map-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: #111;
+  margin-bottom: 25px;
+}
+
+.world-map {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.world-map-tooltip {
+  border-radius: 5px;
+  font-weight: 500;
+  padding: 8px;
+}
+

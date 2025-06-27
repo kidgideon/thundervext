@@ -5,6 +5,9 @@ import amazon from "../images/amazon_logo.png"
 import cardano from "../images/cardano_logo.png"
 import etherum from "../images/etherum_logo.png"
 import CopyTraders from "../components/copyTraders";
+import SmartProfile from "../components/profiles";
+import InvestedAssets from "../components/investedassets";
+import GeoHeatMap from "../components/heatmap";
 const Market = () => {
 return(
    <div className="user-market-page">
@@ -88,8 +91,10 @@ return(
         </div>
     </div>
   <CopyTraders/>
+  <SmartProfile/>
+  <InvestedAssets/>
+  <GeoHeatMap/>
    </div>
-
     </div>
 )
 }

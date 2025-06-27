@@ -33,6 +33,7 @@
     align-items: center;
     flex-direction: row;
     border-bottom: 1px solid rgb(194, 194, 194);
+    z-index: 50;
 }
 
 .searchbox {
