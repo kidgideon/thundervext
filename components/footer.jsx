@@ -4,9 +4,9 @@ const Footer = () => (
     <footer className="footer-modern fade-in">
         <div className="footer-modern-content">
             <div className="footer-brand">
-                <span>
+                <div>
                     <i className="fa-solid fa-bolt icon"></i> THUNDERVEXT
-                </span>
+                </div>
                 <p>Empowering your financial future, one trade at a time.</p>
             </div>
             <div className="footer-links">

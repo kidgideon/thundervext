@@ -101,6 +101,18 @@
 
 .homePageFirstSection h1 {
     font-size: 250%;
+    text-align: center;
+}
+
+.trdChartDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tradechartImg {
+    width: 700px;
 }
 
 .standardButton,
@@ -291,15 +303,22 @@
     color: #fff;
     margin-bottom: 8px;
 }
-.footer-brand span {
+.footer-brand div {
     font-weight: bold;
     font-size: 1.3rem;
     letter-spacing: 2px;
-}
+    width: 100%;
+    text-align: center;
+    }
+
+    .footer-brand p {
+        width: 100%;
+        text-align: center;
+    }
 .footer-links {
     flex: 2 1 400px;
     display: flex;
-    gap: 40px;
+    margin-top: -100px;
     justify-content: center;
 }
 .footer-links div {
@@ -360,61 +379,6 @@
     align-items: center;
     z-index: 1101;
     display: none;
-}
-
-
-/* Responsive Design */
-.desktopOnly { display: flex; }
-.mobileOnly { display: none }
-
-@media (max-width: 900px) {
-    .animationPoint { width: 90vw; min-width: 200px; }
-    .footer-modern-content { flex-direction: column; align-items: center; gap: 20px; }
-    .footer-links { flex-direction: column; align-items: center; gap: 20px; }
-    .footer-social { justify-content: center; }
-    .navEnd{
-        width: 10%;
-    }
-    
-/* Hamburger menu */
-.hamburgerBtn {
-    display: block;
-}
-
-}
-@media (max-width: 800px) {
-    .navServiceLinks.desktopOnly,
-    .navEnd .desktopOnly,
-    .usFlag.desktopOnly {
-        display: none !important;
-    }
-    .mobileOnly {
-        display: inline-flex !important;
-    }
-    .homePageNav {
-        height: 60px;
-        padding: 0 10px;
-    }
-    .iconSection h3.iconText {
-        font-size: 1.1rem;
-    }
-    .hamburgerBtn {
-    display: block;
-}
- .navEnd{
-        width: 10%;
-    }
-}
-@media (max-width: 600px) {
-    .animationPoint { width: 220px; height: 220px; }
-    .animated-img img { width: 40px !important; height: 40px !important; }
-    .img-bitcoin img, .img-etherum img { width: 35px !important; height: 35px !important; }
-    .hamburgerBtn {
-    display: block;
-}
- .navEnd{
-        width: 10%;
-    }
 }
 
 /* Mobile Menu */
@@ -479,4 +443,154 @@
 @keyframes slideInMenu {
     from { transform: translateX(100%); }
     to { transform: translateX(0); }
+}
+
+
+
+
+/* Responsive Design */
+.desktopOnly { display: flex; }
+.mobileOnly { display: none }
+
+@media (max-width: 1000px) {
+    .footer-modern-content { flex-direction: column; align-items: center; gap: 20px; }
+    .footer-links { flex-direction: column; align-items: center; gap: 20px; }
+    .footer-social { justify-content: center; }
+    .navEnd{
+        width: 10%;
+    }
+
+     .animated-img img { width: 150px !important; height: 150px !important; }
+    
+/* Hamburger menu */
+.hamburgerBtn {
+    display: block;
+}
+
+.homePageFirstSection h3 {
+    width: 95%;
+}
+
+
+.tradechartImg {
+    width: 100%;
+}
+
+.homePageFirstSection h1  {
+    font-size: 200%;
+    padding: 0px;
+}
+
+.homrPageThirdSection {
+    flex-direction: column;
+}
+
+.imageSectionThird {
+    width: 100%;
+    max-width: 300px;
+}
+
+.imageSectionThird img {
+    width: 100%;
+}
+
+.textSectionThird {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.textSectionThird p {
+    font-size: 120%;
+    width: 95%;
+    color: rgb(48, 48, 48);
+    text-align: center;
+}
+
+.homePageSecondSection {
+    flex-direction: column;
+}
+
+.discoveryArea {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+} 
+
+.animationPoint {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.textSectionThird h1 {
+    text-align: center;
+}
+
+ 
+.boxesDirection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+   
+.homrPageThirdSection {
+    flex-direction: column;
+}
+
+.homePageFourthSection  h3{
+    width: 95%;
+    text-align: center;
+}
+}
+@media (max-width: 1200px) {
+    .navServiceLinks.desktopOnly,
+    .navEnd .desktopOnly,
+    .usFlag.desktopOnly {
+        display: none !important;
+    }
+    .mobileOnly {
+        display: inline-flex !important;
+    }
+    .homePageNav {
+        height: 60px;
+        padding: 0 10px;
+    }
+    .iconSection h3.iconText {
+        font-size: 1.1rem;
+    }
+    .hamburgerBtn {
+    display: block;
+}
+ .navEnd{
+        width: 10%;
+    }
+
+ 
+
+
+
+}
+
+
+@media (max-width: 1000px) {
+    .animated-img img { width: 100px !important; height: 100px !important; margin-left: 50px;}
+    .hamburgerBtn {
+    display: block;
+}
+ .navEnd{
+        width: 10%;
+    }
+    
+.homrPageThirdSection {
+    flex-direction: column;
+}
 }

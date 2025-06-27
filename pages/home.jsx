@@ -69,8 +69,9 @@ const Home = () => {
                 >
                     Join Thundervext
                 </button>
-                <img src={tradeChart} alt="" />
-
+                <div className="trdChartDiv">
+ <img className="tradechartImg" src={tradeChart} alt="" />
+                </div>
             </div>
 
             <div className="homePageSecondSection fade-in">
@@ -100,7 +101,7 @@ const Home = () => {
             </div>
 
             <div className="homrPageThirdSection fade-in">
-                <div className="imageSectionThird">
+                <div  className="imageSectionThird">
            <img src={crypto} alt="" />
                 </div>
                 <div className="textSectionThird">
