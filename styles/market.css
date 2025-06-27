@@ -1,0 +1,126 @@
+.user-market-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    flex-direction: column;
+}
+
+.market {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.market-p {
+    width: 100%;
+    text-align: start;
+    margin: 5px;
+    margin-left: 25px;
+}
+
+.explpore-m {
+    width: 100%;
+    text-align: start;
+    margin: 5px;
+    margin-left: 25px;
+}
+.market-items {
+   width: 100%; /* or 100vw if you want it full screen */
+   overflow: hidden; /* optional, for cleanliness */
+}
+
+.scrollables {
+   display: flex;
+   flex-direction: row;
+   gap: 20px;
+   overflow-x: auto;
+   scroll-behavior: smooth;
+
+   /* critical */
+   width: 100%;
+   align-items: stretch; /* optional for layout */
+}
+
+.marketItem {
+    min-width: 380px;
+    height: 250px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+}
+
+.marketItem img {
+  width: 100px;
+}
+
+.boldItemsMrkt {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.lightItemsMrkt {
+     width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.bitcoin-card {
+    background: linear-gradient(135deg, #F7931A, #FFB347);
+    color: white;
+}
+
+.amazon-card {
+    background: linear-gradient(135deg, #232F3E, #000000);
+    color: white;
+}
+
+.cardano-card {
+    background: linear-gradient(135deg, #0033AD, #001C55);
+    color: white;
+}
+
+.etherum-card {
+ background: linear-gradient(135deg, #0A0A23, #3C3C3C);
+    color: white;
+}
+
+.testla-card {
+    background: linear-gradient(135deg, #E82127, #9A0000);
+    color: white;
+}
+
+.ishares-card {
+    background: linear-gradient(135deg, #00A651, #2E7D32);
+    color: white;
+}
+
+
+@media (max-width: 900px) {
+  .market {
+    width: 95%;
+  }
+
+  
+.marketItem {
+    min-width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+}

@@ -6,6 +6,7 @@ import Login from '../pages/login';
 import { Toaster } from 'sonner'; // ✅ import added here
 import Dashboard from '../pages/dashboard';
 import ForgotPassword from '../pages/forgot';
+import Market from '../pages/market';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/reset-pwd" element={<ForgotPassword/>} />
+        <Route path="/market" element={<Market/>} />
       </Routes>
     </Router>
   );

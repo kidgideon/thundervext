@@ -318,13 +318,12 @@
 .footer-links {
     flex: 2 1 400px;
     display: flex;
-    margin-top: -100px;
     justify-content: center;
 }
 .footer-links div {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
 }
 .footer-links h4 {
     color: #fff;
