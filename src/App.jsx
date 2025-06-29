@@ -11,6 +11,7 @@ import Stocks from '../pages/stocks';
 import Crypto from '../pages/crypto';
 import NFT from '../pages/nft';
 import Wallet from '../pages/wallet';
+import Portfolio from '../pages/portfolio';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/crypto" element={<Crypto/>} />
         <Route path="/nft" element={<NFT/>} />
         <Route path="/wallet" element={<Wallet/>} />
+        <Route path="/portfolio" element={<Portfolio/>} />
       </Routes>
     </Router>
   );

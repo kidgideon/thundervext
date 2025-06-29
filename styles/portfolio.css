@@ -1,0 +1,57 @@
+.portfolio-interface-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 70px;
+}
+
+.skeleton {
+  background: #f0f0f0;
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 130px;
+}
+
+.skeleton-title,
+.skeleton-line {
+  background: #ccc;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.skeleton-title {
+  width: 60%;
+  margin-bottom: 10px;
+}
+
+.skeleton-line {
+  width: 90%;
+  height: 16px;
+  margin-bottom: 8px;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f8f8f8 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

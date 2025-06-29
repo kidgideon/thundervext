@@ -10,7 +10,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import DashboardNav from "../components/dashboardNav";
@@ -60,63 +60,75 @@ const Wallet = () => {
     setShowAddModal(true);
   };
 
-  const submitPayment = async () => {
-    // Validate fields
-    if (!amount || !proof) {
-      toast.error("Fill all fields");
-      return;
-    }
+// Inside your component...
+const submitPayment = async () => {
+  if (!amount || !proof) {
+    toast.error("Fill all fields");
+    return;
+  }
 
-    if (!userId) {
-      toast.error("User not authenticated");
-      return;
-    }
+  if (!userId) {
+    toast.error("User not authenticated");
+    return;
+  }
 
-    if (!(proof instanceof File) || proof.size === 0) {
-      toast.error("Invalid proof file");
-      return;
-    }
+  if (!(proof instanceof File) || proof.size === 0) {
+    toast.error("Invalid proof file");
+    return;
+  }
 
-    try {
-      setSubmitting(true);
-      const toastId = toast.loading("Uploading proof...");
-      console.log("Uploading file:", proof);
+  try {
+    setSubmitting(true);
+    const toastId = toast.loading("Uploading proof...");
 
-      // Upload proof image to Firebase Storage
-      const storageRef = ref(storage, `proofs/${userId}-${Date.now()}`);
-      await uploadBytes(storageRef, proof);
-      console.log("Upload complete");
+    const storageRef = ref(storage, `proofs/${userId}-${Date.now()}`);
+    const uploadTask = uploadBytesResumable(storageRef, proof);
 
-      // Get download URL
-      const proofURL = await getDownloadURL(storageRef);
-      console.log("Got download URL:", proofURL);
+    // Track progress (optional)
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        toast.message(`Uploading: ${progress}%`, { id: toastId });
+      },
+      (error) => {
+        console.error("Upload error:", error);
+        toast.error("Upload failed", { id: toastId });
+        setSubmitting(false);
+      },
+      async () => {
+        // On complete
+        const proofURL = await getDownloadURL(uploadTask.snapshot.ref);
+        console.log("Upload complete, file URL:", proofURL);
 
-      // Prepare payment data
-      const paymentData = {
-        userId,
-        amount: parseFloat(amount),
-        proofImageUrl: proofURL,
-        channel: selectedChannel,
-        status: "pending",
-        timestamp: serverTimestamp(),
-      };
+        const paymentData = {
+          userId,
+          amount: parseFloat(amount),
+          proofImageUrl: proofURL,
+          channel: selectedChannel,
+          status: "pending",
+          timestamp: serverTimestamp(),
+        };
 
-      // Add payment request to Firestore
-      await addDoc(collection(db, "paymentRequests"), paymentData);
+        await addDoc(collection(db, "paymentRequests"), paymentData);
 
-      toast.dismiss(toastId);
-      toast.success("Payment request submitted");
-      setShowSubmitModal(false);
-      setSelectedChannel(null);
-      setAmount("");
-      setProof(null);
-    } catch (err) {
-      console.error("SubmitPayment Error: ", err.code, err.message);
-      toast.error("Submission failed");
-    } finally {
-      setSubmitting(false);
-    }
-  };
+        toast.success("Payment request submitted", { id: toastId });
+
+        // Reset state
+        setShowSubmitModal(false);
+        setSelectedChannel(null);
+        setAmount("");
+        setProof(null);
+      }
+    );
+  } catch (err) {
+    console.error("SubmitPayment Error: ", err.code, err.message);
+    toast.error("Submission failed");
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
 
   return (

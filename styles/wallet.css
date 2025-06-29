@@ -136,3 +136,15 @@
   border-left: 5px solid #a23cf4;
   border-radius: 8px;
 }
+
+
+@media screen and (max-width: 768px) {
+    
+.area {
+    width: 97%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+}
