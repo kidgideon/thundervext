@@ -78,7 +78,10 @@ const InvestedAssets = () => {
 
   return (
     <div className="invested-assets-container">
-      <h2 className="invested-assets-title">Most Invested Assets</h2>
+      <div className="tradersTop">
+        <h1>Invested Assets</h1>
+        <p>These are the most invested assests in our platform as of today</p>
+      </div>
       <div className="invested-assets-grid">
         {assets.map((asset, index) => (
           <div className="asset-card" key={index}>

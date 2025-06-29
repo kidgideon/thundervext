@@ -93,7 +93,6 @@ return(
   <CopyTraders/>
   <SmartProfile/>
   <InvestedAssets/>
-  <GeoHeatMap/>
    </div>
     </div>
 )

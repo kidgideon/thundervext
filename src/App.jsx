@@ -7,6 +7,10 @@ import { Toaster } from 'sonner'; // ✅ import added here
 import Dashboard from '../pages/dashboard';
 import ForgotPassword from '../pages/forgot';
 import Market from '../pages/market';
+import Stocks from '../pages/stocks';
+import Crypto from '../pages/crypto';
+import NFT from '../pages/nft';
+import Wallet from '../pages/wallet';
 
 function App() {
   return (
@@ -19,6 +23,10 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/reset-pwd" element={<ForgotPassword/>} />
         <Route path="/market" element={<Market/>} />
+        <Route path="/stocks" element={<Stocks/>} />
+        <Route path="/crypto" element={<Crypto/>} />
+        <Route path="/nft" element={<NFT/>} />
+        <Route path="/wallet" element={<Wallet/>} />
       </Routes>
     </Router>
   );

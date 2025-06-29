@@ -24,7 +24,11 @@ const SmartProfile = () => {
 
   return (
     <div className="smart-profiles-container">
-      <h2 className="smart-title">Smart Profiles</h2>
+    <div className="tradersTop">
+        <h1>Smart Profiles ™</h1>
+        <p>These are our big crypto profile</p>
+      </div>
+
       <div className="smart-profiles-grid">
         {profiles.map((profile, index) => (
           <div

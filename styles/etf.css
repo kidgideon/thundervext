@@ -1,0 +1,94 @@
+.etf-component {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.etf-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.etf-filters {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.etf-filters select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+}
+
+.etf-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.etf-row {
+  display: grid;
+  grid-template-columns: 60px repeat(8, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #fafafa;
+  transition: background 0.2s ease;
+}
+
+.etf-row:hover {
+  background: #f0f8ff;
+}
+
+.etf-head {
+  background: #e6f0ff;
+  font-weight: bold;
+}
+
+.etf-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.etf-load-more {
+  margin-top: 20px;
+  padding: 10px 18px;
+  background: #a23cf4;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.etf-load-more:hover {
+  background: #c47cff;
+}
+
+@media screen and (max-width: 768px) {
+  .etf-row {
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 12px;
+  }
+
+  .etf-head {
+    display: none;
+  }
+}
