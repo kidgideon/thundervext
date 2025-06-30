@@ -12,6 +12,7 @@ import Crypto from '../pages/crypto';
 import NFT from '../pages/nft';
 import Wallet from '../pages/wallet';
 import Portfolio from '../pages/portfolio';
+import Settings from '../pages/settings';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/home" element={<Dashboard/>} />
         <Route path="/reset-pwd" element={<ForgotPassword/>} />
         <Route path="/market" element={<Market/>} />
         <Route path="/stocks" element={<Stocks/>} />
@@ -29,7 +30,8 @@ function App() {
         <Route path="/nft" element={<NFT/>} />
         <Route path="/wallet" element={<Wallet/>} />
         <Route path="/portfolio" element={<Portfolio/>} />
-      </Routes>
+        <Route path="/settings" element={<Settings/>} />
+      </Routes>   
     </Router>
   );
 }

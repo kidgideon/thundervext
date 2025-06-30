@@ -1,0 +1,83 @@
+.settings-interface-area {
+  min-height: 100vh;
+  background: #f7f7fa;
+}
+.settings-content {
+  margin-left: 320px;
+  padding: 40px 24px;
+  max-width: 600px;
+}
+.settings-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+.settings-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(31,11,58,0.06);
+  padding: 32px;
+}
+.settings-profile {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.settings-profile-pic {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ececec;
+}
+.settings-profile-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.settings-profile-email {
+  color: #888;
+  font-size: 1rem;
+  margin-top: 4px;
+}
+.settings-divider {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+.settings-fields label {
+  display: block;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+.settings-fields input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 6px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafbfc;
+}
+.settings-actions {
+  margin-top: 24px;
+}
+.settings-btn {
+  background: #1f0b3a;
+  color: #fff;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.settings-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.settings-loading {
+  font-size: 1.1rem;
+  color: #888;
+}

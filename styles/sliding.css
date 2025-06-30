@@ -1,0 +1,85 @@
+.sliding-stocks-component {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  background-color: #1f0b3a;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.sliding-stocks-component::before,
+.sliding-stocks-component::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sliding-stocks-component::before {
+  left: 0;
+  background: linear-gradient(to right, #1f0b3a, rgba(31, 11, 58, 0));
+}
+
+.sliding-stocks-component::after {
+  right: 0;
+  background: linear-gradient(to left, #1f0b3a, rgba(31, 11, 58, 0));
+}
+
+.sliding-track {
+  display: flex;
+  width: max-content;
+  animation: slide-left 200s linear infinite;
+  z-index: 1;
+}
+
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.stock-item {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 150px;
+  font-size: 14px;
+  font-family: "Segoe UI", sans-serif;
+  white-space: nowrap;
+}
+
+.stock-symbol {
+  font-weight: 600;
+  margin-right: 6px;
+  color: #B374FF;
+}
+
+.stock-price {
+  margin-right: 6px;
+}
+
+.stock-change.positive {
+  color: #00ff95;
+}
+
+.stock-change.negative {
+  color: #ff4b4b;
+}
+
+@media (max-width: 600px) {
+  .stock-item {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}
