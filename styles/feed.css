@@ -16,6 +16,8 @@
 @media screen and (max-width: 768px) {
   .app-feed-main {
     scrollbar-width: none;
+    padding-right: 0px;
+    margin-top: 20px;
   }
   .app-feed-main::-webkit-scrollbar {
     display: none;
