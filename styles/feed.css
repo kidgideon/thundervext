@@ -46,8 +46,10 @@
 
 .app-feed-card {
   background: #fff;
+  width: 95%;
+  max-width: 400px;
   border-radius: 12px;
-  padding: 16px;
+  padding: 3px;
   margin-bottom: 20px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   border: 1px solid gray;
