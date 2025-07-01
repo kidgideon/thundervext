@@ -57,7 +57,7 @@ const Signup = () => {
   const result = await verifyCode(verificationInput, formData);
   if (result.success) {
     toast.success("✅ Account created successfully.");
-    navigate("/dashboard"); // ✅ this line navigates the user
+    navigate("/home"); // ✅ this line navigates the user
   } else {
     toast.error(result.error || "❌ Verification failed.");
   }
@@ -67,7 +67,7 @@ const handleGoogleLogin = async () => {
   const result = await loginWithGoogle();
   if (result.success) {
     toast.success("🎉 Signed in with Google!");
-    navigate("/dashboard");
+    navigate("/home");
   }
 };
 
