@@ -1,7 +1,10 @@
 /* background #1f0b3a */
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 
 body {
-    font-family: sans-serif;
     margin: 0px;
     padding: 0px;
 }
