@@ -4,6 +4,7 @@ import logo from "../images/logo.jpg";
 import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { toast } from "sonner";
+import GeoHeatMap from "./heatmap";
 
 const Feed = () => {
   const [feeds, setFeeds] = useState([]);
@@ -205,6 +206,7 @@ const Feed = () => {
           <li>🌍 Over 300 million people use crypto worldwide.</li>
           <li>📈 Institutions now hold over $80B in BTC.</li>
         </ul>
+        <GeoHeatMap/>
       </div>
 
       {imageModal && (

@@ -1,8 +1,11 @@
 .geo-map-container {
-  background: white;
   border-radius: 10px;
   margin-top: 20px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .geo-map-title {
@@ -16,6 +19,9 @@
 .world-map {
   width: 100% !important;
   height: auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .world-map-tooltip {

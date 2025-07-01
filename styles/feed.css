@@ -3,13 +3,25 @@
   flex-direction: row;
   gap: 20px;
   width: 100%;
+  margin-top: 5px;
 }
 
 .app-feed-main {
   flex: 1;
-  overflow-y: auto;
-  max-height: 100vh;
-  padding-right: 10px;
+  height: 300px;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  flex-direction: column;
+
+}
+
+.app-feed-main::-webkit-scrollbar {
+  width: 10px;
 }
 
 /* Hide scrollbar on mobile */
@@ -17,7 +29,9 @@
   .app-feed-main {
     scrollbar-width: none;
     padding-right: 0px;
-    margin-top: 20px;
+    margin-top: 10px;
+    height: 100%;
+    height: 100%;
   }
   .app-feed-main::-webkit-scrollbar {
     display: none;
@@ -28,31 +42,33 @@
   .app-feed-notice {
     display: none;
   }
+
+  
 }
 
 .app-feed-notice {
-  width: 300px;
+  width: 45%;
   flex-shrink: 0;
   position: sticky;
   top: 20px;
   height: fit-content;
-  background: #f7f7f7;
   border-radius: 8px;
   padding: 16px;
   font-size: 14px;
   color: #444;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
+  }
 
 .app-feed-card {
   background: #fff;
   width: 95%;
-  max-width: 400px;
+  max-width: 600px;
   border-radius: 12px;
-  padding: 3px;
+  padding: 10px;
   margin-bottom: 20px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   border: 1px solid gray;
+  
 }
 
 .app-feed-header {

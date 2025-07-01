@@ -54,7 +54,7 @@ const GeoHeatMap = () => {
         frame
         tooltipBgColor="#000"
         tooltipTextColor="#fff"
-        tooltipFontSize="0.85rem"
+        tooltipFontSize="300px"
       />
     </div>
   );

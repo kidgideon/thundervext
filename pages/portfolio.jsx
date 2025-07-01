@@ -4,6 +4,9 @@ import { auth, db } from "../config/config";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import DashboardNav from "../components/dashboardNav";
+import SmartProfile from "../components/profiles";
+import CopyTraders from "../components/copyTraders";
+import GeoHeatMap from "../components/heatmap";
 
 const SkeletonCard = () => (
   <div className="marketItem skeleton">
@@ -135,6 +138,9 @@ const Portfolio = () => {
             )}
           </div>
         </div>
+        <CopyTraders/>
+        <SmartProfile/>
+        <GeoHeatMap/>
       </div>
     </div>
   );
