@@ -1,12 +1,22 @@
 .settings-interface-area {
-  min-height: 100vh;
-  background: #f7f7fa;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   padding-top: 80px;
+   padding-bottom: 20px;
 }
 .settings-content {
-  margin-left: 320px;
-  padding: 40px 24px;
-  max-width: 600px;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ margin-top: 30px;
 }
+
 .settings-title {
   font-size: 2rem;
   font-weight: 700;
@@ -16,7 +26,10 @@
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 16px rgba(31,11,58,0.06);
-  padding: 32px;
+  width: 70%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .settings-profile {
   display: flex;
@@ -51,7 +64,7 @@
   font-weight: 500;
 }
 .settings-fields input {
-  width: 100%;
+  width: 90%;
   padding: 8px 12px;
   margin-top: 6px;
   border: 1px solid #ddd;
@@ -80,4 +93,52 @@
 .settings-loading {
   font-size: 1.1rem;
   color: #888;
+}
+.settings-section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1f0b3a;
+}
+
+.settings-image-upload {
+  margin-bottom: 20px;
+}
+
+.settings-image-upload input[type="file"] {
+  display: block;
+  margin-top: 8px;
+}
+
+.settings-fields label {
+  display: flex;
+  margin-bottom: 18px;
+  font-weight: 500;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-fields label p {
+  width: 100%;
+  text-align: start;
+  margin-left: 20px;
+}
+
+
+.settings-btn {
+  background: #1f0b3a;
+  color: #fff;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.settings-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }

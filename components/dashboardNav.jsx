@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { onAuthStateChanged, getAuth, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../config/config";
 import { motion, AnimatePresence } from "framer-motion";
 import "../styles/dashboardNav.css";
 import flag from "../images/pic.webp";
+import Notification from "./notification";
 
 const fallbackPic = flag;
 
@@ -86,12 +87,13 @@ const NAV_ITEMS = [
   },
   {
     label: "Logout",
-    route: "/logout",
+    route: "/logout", // We'll override this below
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
       </svg>
     ),
+    isLogout: true,
   },
 ];
 
@@ -110,7 +112,7 @@ const sidebarVariants = {
     },
   }),
   closed: (isMobile) => ({
-    x: isMobile ? -SIDEBAR_WIDTH_EXPANDED : 0, // always 0 on desktop
+    x: isMobile ? -SIDEBAR_WIDTH_EXPANDED : 0,
     width: SIDEBAR_WIDTH_COLLAPSED,
     transition: {
       type: "spring",
@@ -126,6 +128,8 @@ const DashboardNav = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 700);
   const [user, setUser] = useState({ firstName: "", lastName: "", picture: flag });
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const navigate = useNavigate();
 
   // Responsive: update isMobile on resize
@@ -155,18 +159,48 @@ const DashboardNav = () => {
               lastName: data.lastName || "",
               picture: data.picture || fallbackPic,
             });
+            // Fetch notifications and count unread
+            if (Array.isArray(data.notifications)) {
+              const unread = data.notifications.filter(n => n && n.read === false).length;
+              setUnreadCount(unread);
+            } else {
+              setUnreadCount(0);
+            }
           } else {
             setUser({ firstName: "", lastName: "", picture: flag });
+            setUnreadCount(0);
           }
         } catch (err) {
           setUser({ firstName: "", lastName: "", picture: flag });
+          setUnreadCount(0);
         }
       } else {
         setUser({ firstName: "", lastName: "", picture: flag });
+        setUnreadCount(0);
       }
     });
     return () => unsubscribe();
   }, []);
+
+  // Listen for notification panel close to refresh unread count
+  const handleNotificationPanelClose = async () => {
+    setNotificationOpen(false);
+    // Refresh unread count after panel closes (in case user read some notifications)
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      const userSnap = await getDoc(userDocRef);
+      if (userSnap.exists()) {
+        const data = userSnap.data();
+        if (Array.isArray(data.notifications)) {
+          const unread = data.notifications.filter(n => n && n.read === false).length;
+          setUnreadCount(unread);
+        } else {
+          setUnreadCount(0);
+        }
+      }
+    }
+  };
 
   // Show sidebar when clicking the bars icon on mobile
   const handleBarsClick = () => {
@@ -175,6 +209,18 @@ const DashboardNav = () => {
 
   // Hide sidebar when overlay is clicked (mobile or desktop)
   const handleOverlayClick = () => setExpanded(false);
+
+  // Logout handler with confirmation
+  const handleLogout = async () => {
+    if (window.confirm("Are you sure you want to log out?")) {
+      try {
+        await signOut(auth);
+        navigate("/"); // or to your login page
+      } catch (err) {
+        alert("Logout failed. Please try again.");
+      }
+    }
+  };
 
   return (
     <>
@@ -190,10 +236,34 @@ const DashboardNav = () => {
             <input type="text" placeholder="search" />
           </div>
         </div>
-        <div className="notification-area">
-          <i style={{ color: "black" }} className="fa-solid fa-bell"></i>
+        <div className="notification-area" style={{ position: "relative" }}>
+          <i
+            style={{ color: "black", cursor: "pointer", position: "relative" }}
+            className="fa-solid fa-bell"
+            onClick={() => setNotificationOpen(true)}
+          ></i>
+          {unreadCount > 0 && (
+            <span className="unread-count"
+            >
+              {unreadCount}
+            </span>
+          )}
         </div>
       </div>
+
+      {/* Overlay for notification panel */}
+      {notificationOpen && (
+        <div
+          className="dashboard-nav-overlay"
+          style={{ zIndex: 999 }}
+          onClick={handleNotificationPanelClose}
+        />
+      )}
+
+      {/* Notification panel */}
+      {notificationOpen && (
+        <Notification onClose={handleNotificationPanelClose} />
+      )}
 
       {/* Overlay only when expanded */}
       <AnimatePresence>
@@ -265,8 +335,12 @@ const DashboardNav = () => {
                   className={`nav-item${expanded ? "" : " collapsed"}${hoveredIndex === idx ? " hovered" : ""}`}
                   key={item.label}
                   onClick={() => {
-                    navigate(item.route);
-                    if (isMobile) setExpanded(false); // auto-close on mobile
+                    if (item.isLogout) {
+                      handleLogout();
+                    } else {
+                      navigate(item.route);
+                      if (isMobile) setExpanded(false); // auto-close on mobile
+                    }
                   }}
                   onMouseEnter={() => !expanded && setHoveredIndex(idx)}
                   onMouseLeave={() => !expanded && setHoveredIndex(null)}

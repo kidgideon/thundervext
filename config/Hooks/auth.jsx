@@ -84,6 +84,7 @@ const useAuth = () => {
         username,
         firstName,
         lastName,
+        notifications: [],
         createdAt: Date.now(),
       });
 
@@ -161,6 +162,7 @@ const loginWithGoogle = async () => {
         provider: "google",
         picture: photoURL,
         createdAt: Date.now(),
+        notifications: [],
       });
 
       toast.success(`🎉 Welcome, ${firstName}!`);
