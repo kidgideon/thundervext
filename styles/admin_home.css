@@ -1,0 +1,103 @@
+.admin-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+.admin-post-area {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.post-area-top {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.img-logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.top-input-admin {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.top-input-admin input {
+    height: 50px;
+    border: none;
+    outline: none;
+}
+
+.bottom-admin {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    cursor:  pointer;
+}
+
+.bottom-admin i {
+    margin-left: 20px;
+}
+
+.upload-button-admin {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+}
+
+.upload-button-admin button {
+  background-color: #B374FF;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(179, 116, 255, 0.25);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s;
+}
+
+.upload-button-admin button:hover {
+  background-color: #9e5fff;
+  box-shadow: 0 6px 16px rgba(179, 116, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.upload-button-admin button:active {
+  background-color: #853fff;
+  box-shadow: 0 2px 8px rgba(179, 116, 255, 0.2);
+  transform: translateY(0);
+}
+
+.upload-button-admin button:disabled {
+  background-color: #d8c5fa;
+  color: #eee;
+  cursor: not-allowed;
+  box-shadow: none;
+}
