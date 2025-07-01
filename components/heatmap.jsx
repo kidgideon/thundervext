@@ -46,7 +46,7 @@ const GeoHeatMap = () => {
     <div className="geo-map-container">
       <h2 className="geo-map-title">🌍 Global Crypto Trade Activity</h2>
       <WorldMap
-        color="#00c2ff"
+        color="#a23cf4"
         backgroundColor="#ffffff"
         data={generateHeatData()}
         valueSuffix=" traders"
