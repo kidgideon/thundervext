@@ -17,6 +17,7 @@ import DashboardNav from "../components/dashboardNav";
 import SmartProfile from "../components/profiles";
 import CopyTraders from "../components/copyTraders";
 import Etf from "../components/etf";
+import Transactions from "../components/transactions";
 import "../styles/wallet.css";
 
 const Wallet = () => {
@@ -146,7 +147,7 @@ const submitPayment = async () => {
             <button onClick={loadChannels}>Add Funds</button>
           </div>
         </div>
-
+   <Transactions/>
         <SmartProfile />
         <CopyTraders />
         <Etf />

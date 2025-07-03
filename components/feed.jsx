@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { toast } from "sonner";
 import GeoHeatMap from "./heatmap";
+import Transactions from "./transactions";
 
 const Feed = () => {
   const [feeds, setFeeds] = useState([]);
@@ -206,12 +207,7 @@ const Feed = () => {
       </div>
 
       <div className="app-feed-notice">
-        <h3>Crypto Facts</h3>
-        <ul>
-          <li>🔐 Bitcoin has a fixed supply of 21 million coins.</li>
-          <li>🌍 Over 300 million people use crypto worldwide.</li>
-          <li>📈 Institutions now hold over $80B in BTC.</li>
-        </ul>
+              <Transactions/>
         <GeoHeatMap />
       </div>
 
