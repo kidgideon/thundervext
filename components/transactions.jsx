@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { auth, db } from "../config/config";
 import { doc, getDoc } from "firebase/firestore";
-import { toast } from "sonner";
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
@@ -9,8 +8,10 @@ const Transactions = () => {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      if (!auth.currentUser) return;
-      const toastId = toast.loading("Fetching transactions...");
+      if (!auth.currentUser) {
+        setLoading(false);
+        return;
+      }
 
       try {
         const userRef = doc(db, "users", auth.currentUser.uid);
@@ -24,9 +25,8 @@ const Transactions = () => {
         );
 
         setTransactions(sorted);
-        toast.success("Loaded", { id: toastId });
       } catch (err) {
-        toast.error("Failed to load transactions", { id: toastId });
+        // Optionally handle error silently
       } finally {
         setLoading(false);
       }
@@ -37,53 +37,52 @@ const Transactions = () => {
 
   return (
     <div className="adminPaymentInterface">
-          <div className="request-table">
-         <h2 style={{ color: "#9e5fff" }}>
+      <div className="request-table">
+        <h2 style={{ color: "#9e5fff" }}>
           Transaction History
-          </h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Text</th>
-                  <th>Type</th>
-                  <th>Status</th>
-                  <th>Date</th>
+        </h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Text</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? (
+              <tr>
+                <td colSpan={4} style={{ textAlign: "center", padding: "20px" }}>
+                  Loading...
+                </td>
+              </tr>
+            ) : transactions.length === 0 ? (
+              <tr>
+                <td colSpan={4} style={{ textAlign: "center", padding: "20px" }}>
+                  No transactions yet.
+                </td>
+              </tr>
+            ) : (
+              transactions.map((t, i) => (
+                <tr key={i}>
+                  <td>{t.text}</td>
+                  <td>{t.type}</td>
+                  <td>
+                    <span className={`status ${t.status}`}>
+                      {t.status}
+                    </span>
+                  </td>
+                  <td>
+                    {new Date(t.date).toLocaleString()}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan={4} style={{ textAlign: "center", padding: "20px" }}>
-                      Loading...
-                    </td>
-                  </tr>
-                ) : transactions.length === 0 ? (
-                  <tr>
-                    <td colSpan={4} style={{ textAlign: "center", padding: "20px" }}>
-                      No transactions yet.
-                    </td>
-                  </tr>
-                ) : (
-                  transactions.map((t, i) => (
-                    <tr key={i}>
-                      <td>{t.text}</td>
-                      <td>{t.type}</td>
-                      <td>
-                        <span className={`status ${t.status}`}>
-                          {t.status}
-                        </span>
-                      </td>
-                      <td>
-                        {new Date(t.date).toLocaleString()}
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-    
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
+    </div>
   );
 };
 

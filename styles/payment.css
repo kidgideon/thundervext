@@ -233,6 +233,10 @@ this is the base color for this project #9e5fff */
 
 
 @media (max-width: 768px) {
+   
+  .add-payment-channels input {
+    width: 250px;
+  }
     
     .request-table table {
     font-size: 0.85rem;

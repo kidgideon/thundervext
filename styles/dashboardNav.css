@@ -17,10 +17,12 @@
     border-bottom: 1px solid rgb(194, 194, 194);
 }
 
+ 
+
 .unread-count {
     position: absolute;
     top: -5px;
-    left: 10px;
+    right: 10px;
     background-color: red;
     color: white;
     width: 15px;
