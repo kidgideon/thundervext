@@ -15,6 +15,7 @@ import Portfolio from '../pages/portfolio';
 import Settings from '../pages/settings';
 import ProtectedRoute from '../config/Hooks/protectedRoute';
 import AdminHome from '../admin/adminHome';
+import Payment from '../admin/adminPayment';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/crypto" element={<ProtectedRoute><Crypto /></ProtectedRoute>} />
         <Route path="/nft" element={<ProtectedRoute><NFT /></ProtectedRoute>} />
          <Route path="/admin/home" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
+          <Route path="/admin/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
         <Route path="/wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
         <Route path="/portfolio" element={<ProtectedRoute><Portfolio /></ProtectedRoute>} />
         <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />

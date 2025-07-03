@@ -1,0 +1,276 @@
+/* 
+this is the base color for this project #9e5fff */
+
+.adminPaymentInterface {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+.add-payment-channels {
+    width: 450px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1);
+     padding: 10px;
+     border-radius: 10px;
+}
+
+.add-payment-channels input {
+    width: 300px;
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: rgb(218, 218, 218);
+    border-radius: 10px;
+    color: black;
+}
+
+.add-payment-channels i {
+    font-size: 50px;
+    color: #B374FF;
+    cursor: pointer;
+}
+
+.existing-payment-channels {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.payment-channel {
+    width: 300px;
+    height: auto;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 16px;
+    background: #1f0b3a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    word-break: break-word;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.payment-channel:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(158, 95, 255, 0.3);
+}
+
+.payment-channel i {
+    font-size: 50px;
+    color: #9e5fff;
+    margin-bottom: 10px;
+}
+
+.name-div-dmin {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.address-div-admin {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 10px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.address-div-admin p {
+    margin: 0;
+    color: #eee;
+}
+
+.payment-requests {
+  width: 100%;
+  margin-top: 40px;
+  background-color: white;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.payment-requests h2 {
+      color: #B374FF;
+}
+
+/* Filter buttons */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.filter-buttons button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #1f0b3a;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.filter-buttons button:hover {
+  background-color: #9e5fff;
+}
+
+.filter-buttons .active {
+  background-color: #9e5fff;
+  font-weight: bold;
+}
+
+/* Table container */
+.request-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+/* Table */
+.request-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1f0b3a;
+  color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 700px;
+}
+
+.request-table th,
+.request-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.request-table thead {
+  background-color: #2d1252;
+}
+
+.request-table th {
+  color: #cccccc;
+  font-weight: 600;
+}
+
+.request-table td a {
+  color: #9e5fff;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-transform: capitalize;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status.pending {
+  background-color: #ffbb0050;
+  color: #ffbb00;
+}
+
+.status.success {
+  background-color: #00c97e30;
+  color: #00c97e;
+}
+
+.status.declined {
+  background-color: #ff4d4f33;
+  color: #ff4d4f;
+}
+
+/* Action buttons */
+.accept-btn,
+.decline-btn {
+  padding: 6px 10px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.accept-btn {
+  background-color: #00c97e;
+  color: white;
+}
+
+.decline-btn {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+
+@media (max-width: 768px) {
+    
+    .request-table table {
+    font-size: 0.85rem;
+    min-width: 100%;
+  }
+
+  .filter-buttons {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .accept-btn,
+  .decline-btn {
+    margin-top: 6px;
+    width: 100%;
+  }
+
+  .add-payment-channels {
+        width: 90%;
+    }
+
+     .payment-channel {
+        width: 90%;
+        height: auto;
+        padding: 20px 10px;
+    }
+
+    .name-div-dmin {
+        flex-direction: column;
+    }
+
+    .address-div-admin {
+        font-size: 0.9rem;
+    }
+
+}
+
+
+
+

@@ -21,7 +21,11 @@ const Feed = () => {
       (snapshot) => {
         const data = snapshot.docs
           .map((doc) => ({ id: doc.id, ...doc.data() }))
-          .sort((a, b) => b.date?.toDate() - a.date?.toDate());
+          .sort((a, b) => {
+            const dateA = a.date?.toDate?.() || new Date(0);
+            const dateB = b.date?.toDate?.() || new Date(0);
+            return dateB - dateA;
+          });
 
         setFeeds(data);
 
@@ -107,6 +111,10 @@ const Feed = () => {
               const dummyLikes = formatNumber(likeMap[feed.id] || 0);
               const dummyShares = formatNumber(shareMap[feed.id] || 0);
               const expanded = expandedPosts[feed.id];
+              const formattedDate =
+                feed.date && typeof feed.date.toDate === "function"
+                  ? feed.date.toDate().toLocaleString()
+                  : "Just now";
 
               return (
                 <div className="app-feed-card" key={feed.id}>
@@ -119,7 +127,7 @@ const Feed = () => {
                     />
                     <div>
                       <h4>Thundervext</h4>
-                      <p>{new Date(feed.date.toDate()).toLocaleString()}</p>
+                      <p>{formattedDate}</p>
                     </div>
                   </div>
 
@@ -149,9 +157,7 @@ const Feed = () => {
 
                   <div className="app-feed-actions">
                     <button
-                      className={`app-feed-like-btn ${
-                        isLiked ? "liked" : ""
-                      }`}
+                      className={`app-feed-like-btn ${isLiked ? "liked" : ""}`}
                       onClick={() => handleLike(feed.id)}
                     >
                       <span className="app-feed-icon">
@@ -206,7 +212,7 @@ const Feed = () => {
           <li>🌍 Over 300 million people use crypto worldwide.</li>
           <li>📈 Institutions now hold over $80B in BTC.</li>
         </ul>
-        <GeoHeatMap/>
+        <GeoHeatMap />
       </div>
 
       {imageModal && (
