@@ -64,17 +64,36 @@ const Wallet = () => {
 // Inside your component...
 const submitPayment = async () => {
   if (!amount || !proof) {
-    toast.error("Fill all fields");
+    toast.error("Please fill in both amount and proof.");
     return;
   }
 
   if (!userId) {
-    toast.error("User not authenticated");
+    toast.error("User not authenticated.");
     return;
   }
 
-  if (!(proof instanceof File) || proof.size === 0) {
-    toast.error("Invalid proof file");
+  const allowedTypes = [
+    "image/png",
+    "image/jpeg",
+    "image/jpg",
+    "image/webp",
+    "image/gif",
+    "image/bmp",
+  ];
+  const allowedExtensions = [".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp"];
+
+  const fileType = proof?.type;
+  const fileName = proof?.name?.toLowerCase() || "";
+
+  const isValidImage =
+    proof instanceof File &&
+    proof.size > 0 &&
+    allowedTypes.includes(fileType) &&
+    allowedExtensions.some((ext) => fileName.endsWith(ext));
+
+  if (!isValidImage) {
+    toast.error("Only valid image files (JPG, PNG, GIF, WEBP, BMP) are allowed.");
     return;
   }
 
@@ -85,7 +104,6 @@ const submitPayment = async () => {
     const storageRef = ref(storage, `proofs/${userId}-${Date.now()}`);
     const uploadTask = uploadBytesResumable(storageRef, proof);
 
-    // Track progress (optional)
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -98,7 +116,6 @@ const submitPayment = async () => {
         setSubmitting(false);
       },
       async () => {
-        // On complete
         const proofURL = await getDownloadURL(uploadTask.snapshot.ref);
         console.log("Upload complete, file URL:", proofURL);
 
@@ -123,13 +140,12 @@ const submitPayment = async () => {
       }
     );
   } catch (err) {
-    console.error("SubmitPayment Error: ", err.code, err.message);
-    toast.error("Submission failed");
+    console.error("SubmitPayment Error:", err);
+    toast.error("Submission failed. Please try again.");
   } finally {
     setSubmitting(false);
   }
 };
-
 
 
   return (
@@ -196,7 +212,11 @@ const submitPayment = async () => {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
-            <input type="file" accept="image/*" onChange={(e) => setProof(e.target.files[0])} />
+          <input
+  type="file"
+  accept=".png, .jpg, .jpeg, .webp, .gif, .bmp"
+  onChange={(e) => setProof(e.target.files[0])}
+/>
             <button disabled={submitting} onClick={submitPayment}>
               {submitting ? "Submitting..." : "Send"}
             </button>
