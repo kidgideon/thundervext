@@ -273,7 +273,7 @@ const AdminNavbar = () => {
               )}
             </div>
             {expanded && (
-              < div onClick={navigate("/profile")} className="side-nav-profile-section">
+              < div onClick={() => navigate("/profile")} className="side-nav-profile-section">
                 <img
                   className="nav-dp"
                   src={user.picture}
