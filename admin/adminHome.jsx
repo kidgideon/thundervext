@@ -13,11 +13,19 @@ const AdminHome = () => {
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
 
-  const handleImageChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
+ const handleImageChange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"];
+  if (!validTypes.includes(file.type)) {
+    toast.error("Invalid file type. Only image files are allowed.");
+    return;
+  }
+
+  setImage(file);
+};
+
 
   const handlePost = async () => {
     if (!content.trim() && !image) {
