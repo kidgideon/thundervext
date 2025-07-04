@@ -2,6 +2,7 @@ import "../styles/copy.css";
 import { useEffect, useState } from "react";
 import { db } from "../config/config";
 import { collection, getDocs } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 const CopyTraders = () => {
   const [traders, setTraders] = useState([]);
@@ -55,28 +56,34 @@ const CopyTraders = () => {
           {loading
             ? Array(4).fill(0).map((_, i) => <SkeletonLoader key={i} />)
             : traders.map((trader, index) => (
-                <div className="trader" key={index}>
-                  <div className="traders-image">
-                    <img src={trader.picture} alt={`${trader.firstName} ${trader.lastName}`} />
-                  </div>
+                <Link
+                  to={`/profile/${trader.username}`}
+                  key={index}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <div className="trader">
+                    <div className="traders-image">
+                      <img src={trader.picture} alt={`${trader.firstName} ${trader.lastName}`} />
+                    </div>
 
-                  <div className="traders-name">
-                    <p className="traders-name-bold">
-                      {trader.firstName} {trader.lastName}
-                    </p>
-                    <p className="username">@{trader.username}</p>
-                  </div>
+                    <div className="traders-name">
+                      <p className="traders-name-bold">
+                        {trader.firstName} {trader.lastName}
+                      </p>
+                      <p className="username">@{trader.username}</p>
+                    </div>
 
-                  <div className="return-on-investment">
-                    <h1 className="green">{trader.profit}%</h1>
-                    <h1 className="red">{trader.risk}%</h1>
-                  </div>
+                    <div className="return-on-investment">
+                      <h1 className="green">{trader.profit}%</h1>
+                      <h1 className="red">{trader.risk}%</h1>
+                    </div>
 
-                  <div className="return-label">
-                    <p>Profit</p>
-                    <p>Loss</p>
+                    <div className="return-label">
+                      <p>Profit</p>
+                      <p>Loss</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
         </div>
       </div>

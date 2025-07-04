@@ -1,0 +1,376 @@
+.userProfileArea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 48px;
+  padding-top: 40px;
+}
+
+.profileContainer {
+  width: 100%;
+  max-width: 900px;
+  margin: 32px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.profileCard {
+  background: #fff;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 0;
+}
+
+.profileHeader {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #a23cf4;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #25124b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.verified {
+  color: #4f46e5;
+  font-size: 1.3rem;
+  margin-left: 6px;
+}
+
+.username {
+  color: #a23cf4;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.bio {
+  color: #64748b;
+  font-size: 1.08rem;
+  margin-bottom: 8px;
+}
+
+.meta {
+  color: #888;
+  font-size: 0.98rem;
+  display: flex;
+  gap: 18px;
+  margin-top: 6px;
+}
+
+.badges {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 16px;
+  background: #f3e8ff;
+  color: #a23cf4;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.statValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #25124b;
+}
+
+.statLabel {
+  color: #888;
+  font-size: 0.98rem;
+}
+
+.recentActivity {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 24px;
+}
+
+.recentActivity h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #a23cf4;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8fafc;
+  margin-top: 8px;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.activityItem {
+  display: grid;
+  grid-template-columns: 70px 80px 90px 120px 110px 1fr;
+  align-items: center;
+  gap: 0;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3e8ff;
+  font-size: 1rem;
+  background: #fff;
+  transition: background 0.2s;
+}
+
+.activityItem:first-child {
+  background: #f3e8ff;
+  font-weight: 700;
+  color: #a23cf4;
+  border-bottom: 2px solid #e9d5ff;
+}
+
+.activityItem:last-child {
+  border-bottom: none;
+}
+
+.activityItem:not(:first-child):hover {
+  background: #f3e8ff55;
+}
+
+.buy {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.sell {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.asset {
+  font-weight: 600;
+  color: #25124b;
+}
+
+.amount {
+  color: #4f46e5;
+}
+
+.value {
+  color: #a23cf4;
+  font-weight: 600;
+}
+
+.date {
+  color: #888;
+  font-size: 0.97rem;
+}
+
+.copy-trade-button {
+  background: #a23cf4;
+  color: white;
+  padding: 10px 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.copy-trade-button:hover {
+  background: #8d2ce3;
+}
+
+.copy-trade-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 0, 30, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #fff;
+  padding: 32px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+.modal-content h3 {
+  color: #a23cf4;
+  margin-bottom: 16px;
+}
+.trade-sequence {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  text-align: left;
+}
+.trade-sequence li {
+  margin-bottom: 10px;
+  color: #25124b;
+}
+.modal-close-btn {
+  background: #25124b;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Add to the end of: c:\Users\maseglo.com\Desktop\Stock\frontend\styles\userProfile.module.css */
+
+.copyTradeButton {
+  background: #a23cf4;
+  color: white;
+  padding: 10px 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.copyTradeButton:hover {
+  background: #8d2ce3;
+}
+
+.activityTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: #f8fafc;
+  margin-top: 8px;
+}
+
+.activityTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.activityTable thead tr {
+  background: #f3e8ff;
+  color: #a23cf4;
+  font-weight: 700;
+}
+
+.activityTable th,
+.activityTable td {
+  padding: 12px 10px;
+  text-align: left;
+  font-size: 1rem;
+  border-bottom: 1px solid #f3e8ff;
+  white-space: nowrap;
+}
+
+.activityTable th:last-child,
+.activityTable td:last-child {
+  min-width: 120px;
+}
+
+.activityTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.activityTable tbody tr:hover {
+  background: #f3e8ff55;
+  transition: background 0.2s;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .profileContainer {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .profileCard {
+    padding: 5px;
+    width: 97%;
+    margin-top: 20px;
+  }
+  .profileHeader {
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .activityItem {
+    grid-template-columns: 60px 60px 70px 90px 80px 1fr;
+    font-size: 0.97rem;
+  }
+  .activityTable {
+    font-size: 0.97rem;
+    min-width: 500px;
+  }
+  .activityTable th,
+  .activityTable td {
+    padding: 8px 6px;
+  }
+}
+@media (max-width: 900px) {
+  .activityItem {
+    grid-template-columns: 60px 60px 70px 90px 80px 1fr;
+    font-size: 0.97rem;
+  }
+}
+@media (max-width: 600px) {
+  .activityItem {
+    grid-template-columns: 50px 50px 60px 70px 60px 1fr;
+    font-size: 0.95rem;
+    padding: 8px 0;
+  }
+  .activityList {
+    border-radius: 8px;
+  }
+}
+@media (max-width: 500px) {
+  .activityTable {
+    font-size: 0.95rem;
+    min-width: 400px;
+  }
+}

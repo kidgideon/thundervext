@@ -64,7 +64,7 @@ const CryptoSpotlight = () => {
               whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(162, 60, 244, 0.3)" }}
               whileTap={{ scale: 0.95 }}
             >
-              <i className="fas fa-bitcoin"></i>
+             <i class="fa-solid fa-money-bill-trend-up"></i>
               Start Trading Crypto
             </motion.a>
           </motion.div>

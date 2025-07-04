@@ -15,12 +15,14 @@ import NFT from '../pages/nft';
 import Wallet from '../pages/wallet';
 import Portfolio from '../pages/portfolio';
 import Settings from '../pages/settings';
+import UserProfile from '../pages/profile';
 
 import AdminHome from '../admin/adminHome';
 import Payment from '../admin/adminPayment';
 import AdminTraders from '../admin/adminTraders';
 import Activities from '../admin/adminActivities';
 import AdminSettings from '../admin/adminSettings';
+import CopyTraderProfile from '../pages/traderProfile';
 
 import ProtectedRoute from '../config/Hooks/protectedRoute';
 import RoleProtectedRoute from '../config/Hooks/roleProtection';
@@ -45,6 +47,9 @@ function App() {
         <Route path="/wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
         <Route path="/portfolio" element={<ProtectedRoute><Portfolio /></ProtectedRoute>} />
         <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+         <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+           <Route path="/profile/:username" element={<ProtectedRoute><CopyTraderProfile /></ProtectedRoute>} />
+
 
         {/* Admin Role-Protected Routes */}
         <Route path="/admin/home" element={<RoleProtectedRoute><AdminHome /></RoleProtectedRoute>} />
