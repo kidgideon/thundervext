@@ -478,6 +478,7 @@
 /* Crypto Spotlight */
 .cryptoSpotlight {
   background: var(--secondary-bg);
+  overflow: hidden;
 }
 
 .cryptoContent {
