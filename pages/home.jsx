@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "../styles/home.css"
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+import Footer from "../components/footer";
 
 import logo from "../images/logo.jpg";
 import tradeChart from "../images/tradeimage.webp";
