@@ -1,16 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import usFlag from "../images/us.png";
 
 const NAV_LINKS = [
-    { label: "Trading", href: "#" },
-    { label: "Investment", href: "#" },
-    { label: "Top markets", href: "#" },
-    { label: "Company", href: "#" },
+    { label: "Trading", href: "/signup" },
+    { label: "Investment", href: "/signup" },
+    { label: "Top markets", href: "/signup" },
+    { label: "Company", href: "/signup" },
 ];
 
 const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef();
+    const navigate = useNavigate();
 
     // Close menu on outside click
     useEffect(() => {
@@ -27,7 +29,7 @@ const NavBar = () => {
     return (
         <nav className="homePageNav fade-in">
             <div className="navStart">
-                <div className="iconSection">
+                <div className="iconSection" style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
                     <i style={{ marginLeft: "30px" }} className="fa-solid fa-bolt icon"></i>
                     <h3 className="iconText">THUNDERVEXT</h3>
                 </div>
@@ -35,14 +37,21 @@ const NavBar = () => {
 
             <div className="navServiceLinks desktopOnly">
                 {NAV_LINKS.map((link) => (
-                    <p key={link.label}><a href={link.href}>{link.label}</a></p>
+                    <p key={link.label}>
+                        <Link to={link.href}>{link.label}</Link>
+                    </p>
                 ))}
             </div>
 
             <div className="navEnd">
                 <img className="usFlag desktopOnly" src={usFlag} alt="US Flag" />
-               
-                <button style={{marginRight: "10px"}} className="standardBtn desktopOnly">Join now</button>
+                <button
+                    style={{ marginRight: "10px" }}
+                    className="standardBtn desktopOnly"
+                    onClick={() => navigate("/signup")}
+                >
+                    Join now
+                </button>
 
                 {/* Hamburger for mobile */}
                 <button
@@ -66,12 +75,26 @@ const NavBar = () => {
                             <i className="fa-solid fa-xmark"></i>
                         </button>
                         {NAV_LINKS.map((link) => (
-                            <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)}>
+                            <Link
+                                key={link.label}
+                                to={link.href}
+                                onClick={() => setMenuOpen(false)}
+                            >
                                 {link.label}
-                            </a>
+                            </Link>
                         ))}
-                        <a href="#">Sign in</a>
-                        <button className="standardBtn">Join now</button>
+                        <Link to="/signup" onClick={() => setMenuOpen(false)}>
+                            Sign in
+                        </Link>
+                        <button
+                            className="standardBtn"
+                            onClick={() => {
+                                setMenuOpen(false);
+                                navigate("/signup");
+                            }}
+                        >
+                            Join now
+                        </button>
                     </div>
                 </div>
             )}
