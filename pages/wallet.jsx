@@ -159,7 +159,15 @@ const submitPayment = async () => {
           </div>
           <hr className="bar" />
           <div className="wallet-actual-balanec">
-            <p>${balance !== null ? balance : "..."}</p>
+            <p>
+              $
+              {balance !== null
+                ? Number(balance).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                : "..."}
+            </p>
             <button onClick={loadChannels}>Add Funds</button>
           </div>
         </div>

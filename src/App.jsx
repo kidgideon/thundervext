@@ -16,6 +16,9 @@ import Settings from '../pages/settings';
 import ProtectedRoute from '../config/Hooks/protectedRoute';
 import AdminHome from '../admin/adminHome';
 import Payment from '../admin/adminPayment';
+import AdminTraders from '../admin/adminTraders';
+import Activites from '../admin/adminActivities';
+import AdminSettings from '../admin/adminSettings';
 
 function App() {
   return (
@@ -36,6 +39,9 @@ function App() {
         <Route path="/etf" element={<ProtectedRoute><NFT /></ProtectedRoute>} />
          <Route path="/admin/home" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path="/admin/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
+           <Route path="/admin/traders" element={<ProtectedRoute><AdminTraders /></ProtectedRoute>} />
+            <Route path="/admin/activities" element={<ProtectedRoute><Activites /></ProtectedRoute>} />
+               <Route path="/admin/settings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>} />
         <Route path="/wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
         <Route path="/portfolio" element={<ProtectedRoute><Portfolio /></ProtectedRoute>} />
         <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
