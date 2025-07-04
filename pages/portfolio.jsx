@@ -1,7 +1,7 @@
 import "../styles/portfolio.css";
 import { useEffect, useState } from "react";
 import { auth, db } from "../config/config";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import DashboardNav from "../components/dashboardNav";
 import SmartProfile from "../components/profiles";
@@ -20,7 +20,9 @@ const SkeletonCard = () => (
 const Portfolio = () => {
   const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [livePrices, setLivePrices] = useState({});
 
+  // Fetch user assets
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
@@ -35,15 +37,12 @@ const Portfolio = () => {
 
         if (userSnap.exists()) {
           const data = userSnap.data();
-          if (!Array.isArray(data.assets)) {
-            await setDoc(userRef, { assets: [] }, { merge: true });
-            setAssets([]);
-          } else {
+          if (Array.isArray(data.assets)) {
             setAssets(data.assets);
-            console.log("Loaded assets:", data.assets);
+          } else {
+            setAssets([]);
           }
         } else {
-          await setDoc(userRef, { assets: [] }, { merge: true });
           setAssets([]);
         }
       } catch (err) {
@@ -57,12 +56,36 @@ const Portfolio = () => {
     return () => unsubscribe();
   }, []);
 
+  // Fetch live crypto prices
+  useEffect(() => {
+    const cryptoIds = assets
+      .filter(a => a.type === "crypto" && a.id)
+      .map(a => a.id.toLowerCase());
+
+    if (cryptoIds.length === 0) return;
+
+    const fetchPrices = async () => {
+      try {
+        const idsParam = cryptoIds.join(",");
+        const res = await fetch(
+          `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd`
+        );
+        const json = await res.json();
+        setLivePrices(json);
+      } catch (err) {
+        console.error("Failed to fetch live crypto prices:", err);
+      }
+    };
+
+    fetchPrices();
+  }, [assets]);
+
   return (
     <div className="portfolio-interface-area">
       <div className="area">
         <DashboardNav />
         <div className="market-items">
-          <p className="market-p">Investment Opportunities</p>
+          <p className="market-p">Your Investments</p>
           <h1 className="explpore-m">Stocks and Crypto Portfolio</h1>
           <div className="scrollables">
             {loading ? (
@@ -71,34 +94,7 @@ const Portfolio = () => {
               <p style={{ color: "gray", fontStyle: "italic" }}>You have no assets yet.</p>
             ) : (
               assets.map((asset, index) => {
-                const {
-                  name,
-                  symbol,
-                  totalQuantity,
-                  averageBuyPrice,
-                  currentMarketPrice,
-                  assetType,
-                } = asset;
-
-                const quantity = parseFloat(totalQuantity);
-                const buyPrice = parseFloat(averageBuyPrice);
-                const marketPrice = parseFloat(currentMarketPrice);
-
-                console.log(`Asset ${index + 1}: ${symbol}`);
-                console.log("  quantity:", quantity, typeof quantity);
-                console.log("  buyPrice:", buyPrice, typeof buyPrice);
-                console.log("  marketPrice:", marketPrice, typeof marketPrice);
-
-                const valid =
-                  !isNaN(quantity) && !isNaN(buyPrice) && !isNaN(marketPrice);
-
-                const totalValue = valid ? quantity * marketPrice : 0;
-                const totalCost = valid ? quantity * buyPrice : 0;
-                const profit = totalValue - totalCost;
-                const profitPercent =
-                  valid && totalCost !== 0
-                    ? ((profit / totalCost) * 100).toFixed(2)
-                    : "N/A";
+                const { name, symbol, unit, price, type, total, id } = asset;
 
                 const gradient = [
                   "linear-gradient(135deg, #1f4037, #99f2c8)",
@@ -108,6 +104,17 @@ const Portfolio = () => {
                   "linear-gradient(135deg, #e53935, #e35d5b)",
                   "linear-gradient(135deg, #0f2027, #2c5364)",
                 ][index % 6];
+
+                // Get live price
+                const livePrice =
+                  type === "crypto" && id && livePrices[id?.toLowerCase()]
+                    ? livePrices[id.toLowerCase()].usd
+                    : price;
+
+                const totalValue = livePrice * unit;
+                const cost = price * unit;
+                const profit = totalValue - cost;
+                const profitPercent = cost !== 0 ? ((profit / cost) * 100).toFixed(2) : "N/A";
 
                 return (
                   <div
@@ -125,10 +132,10 @@ const Portfolio = () => {
                     <h1>{symbol}</h1>
                     <div className="boldItemsMrkt">
                       <p>{name}</p>
-                      <p>{valid ? `$${marketPrice.toLocaleString()}` : "$N/A"}</p>
+                      <p>${livePrice.toLocaleString()}</p>
                     </div>
                     <div className="lightItemsMrkt">
-                      <p>{assetType?.toUpperCase() || "N/A"}</p>
+                      <p>{type?.toUpperCase() || "N/A"}</p>
                       <p style={{ color: profit >= 0 ? "#7CFC00" : "#FF6347" }}>
                         {profitPercent !== "N/A" ? `${profit >= 0 ? "+" : ""}${profitPercent}%` : "N/A"}
                       </p>
@@ -139,10 +146,11 @@ const Portfolio = () => {
             )}
           </div>
         </div>
-        <Transactions/>
-        <CopyTraders/>
-        <SmartProfile/>
-        <GeoHeatMap/>
+
+        <Transactions />
+        <CopyTraders />
+        <SmartProfile />
+        <GeoHeatMap />
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ function App() {
         <Route path="/market" element={<ProtectedRoute><Market /></ProtectedRoute>} />
         <Route path="/stocks" element={<ProtectedRoute><Stocks /></ProtectedRoute>} />
         <Route path="/crypto" element={<ProtectedRoute><Crypto /></ProtectedRoute>} />
-        <Route path="/nft" element={<ProtectedRoute><NFT /></ProtectedRoute>} />
+        <Route path="/etf" element={<ProtectedRoute><NFT /></ProtectedRoute>} />
          <Route path="/admin/home" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path="/admin/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
         <Route path="/wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
