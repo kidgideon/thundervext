@@ -103,6 +103,14 @@ const useAuth = () => {
         notifications: [],
         role: "client",
         createdAt: Date.now(),
+        walletBalance: 0,
+        transactions: [],
+        assets: [],
+        bio:" joined thundervext",
+        location: "US",
+        followers: 0,
+        following: 0,
+        accountLevel: "basic",
       });
 
       toast.success("🎉 Account created successfully!", { id: toastId });
@@ -174,6 +182,14 @@ const useAuth = () => {
           createdAt: Date.now(),
           notifications: [],
           role: "client",
+          walletBalance: 0,
+          transactions: [],
+          assets: [],
+          bio:" joined thundervext",
+          location: "US",
+          followers: 0,
+          following: 0,
+          accountLevel: "basic",
         });
 
         toast.success(`🎉 Welcome, ${firstName}!`, { id: toastId });
