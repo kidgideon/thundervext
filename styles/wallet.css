@@ -79,6 +79,37 @@
     background-color: rgb(187, 187, 187);
     border-radius: 2px;
 }
+.walletSeelction-Method {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 0 8px;
+}
+
+.walletSeelction-Method div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.walletSeelction-Method input[type="radio"] {
+  accent-color: #a23cf4;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.walletSeelction-Method p {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #25124b;
+  background: none;
+  width: auto;
+}
+
 
 .wallet-modal-overlay {
   position: fixed;

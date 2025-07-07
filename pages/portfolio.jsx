@@ -8,6 +8,7 @@ import SmartProfile from "../components/profiles";
 import CopyTraders from "../components/copyTraders";
 import GeoHeatMap from "../components/heatmap";
 import Transactions from "../components/transactions";
+import TradePanel from "../components/userTradePanel";
 
 const SkeletonCard = () => (
   <div className="marketItem skeleton">
@@ -151,6 +152,7 @@ const Portfolio = () => {
         <CopyTraders />
         <SmartProfile />
         <GeoHeatMap />
+        <TradePanel/>
       </div>
     </div>
   );

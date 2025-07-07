@@ -5,6 +5,7 @@
     align-items: center;
     flex-direction: column;
     padding-top: 70px;
+    padding-bottom: 120px;
 }
 
 .skeleton {
@@ -47,6 +48,58 @@
   animation: shimmer 1.3s infinite;
 }
 
+.tradePanel {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 500px;
+  background-color: white;
+  height: 100px;
+  border: 1px solid grey;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tradePanel div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid rgb(224, 224, 224);
+  height: 100%;
+}
+
+.tradePanel div p {
+  margin: 2px;
+  padding: 2px;
+}
+
+.mainValue {
+  font-size: 160%;
+  font-weight: bold;
+}
+
+.subText {
+  color:  grey;
+}
+
+.pnl-profit {
+  color: #10b981; /* green */
+}
+
+.pnl-loss {
+  color: #f87171; /* red */
+}
+
+.ovalueBal {
+  color: rgb(82, 82, 255);
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -54,4 +107,16 @@
   100% {
     background-position: 200% 0;
   }
+}
+
+@media screen and (max-width: 768px) {
+.mainValue {
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.subText {
+  color:  grey;
+  font-size: 60%;
+}
 }

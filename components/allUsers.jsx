@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { useNavigate } from "react-router";
 import { db } from "../config/config";
 import { toast } from "sonner";
 import "../styles/allUsers.css";
@@ -9,6 +10,7 @@ const AllUsers = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [notification, setNotification] = useState("");
   const [loading, setLoading] = useState(false);
+  const  navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -95,7 +97,7 @@ const AllUsers = () => {
               <p><strong>Email:</strong> {user.email}</p>
               <button
                 className="x-user-action-btn"
-                onClick={() => setSelectedUser(user)}
+                onClick={() => navigate(`/manage/${user.username}`)}
               >
                 Manage
               </button>

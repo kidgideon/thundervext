@@ -111,6 +111,7 @@ const useAuth = () => {
         followers: 0,
         following: 0,
         accountLevel: "basic",
+        isActivated: false,
       });
 
       toast.success("🎉 Account created successfully!", { id: toastId });
@@ -190,6 +191,7 @@ const useAuth = () => {
           followers: 0,
           following: 0,
           accountLevel: "basic",
+          isActivated: false,
         });
 
         toast.success(`🎉 Welcome, ${firstName}!`, { id: toastId });
