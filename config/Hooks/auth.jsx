@@ -21,7 +21,6 @@ import { toast } from "sonner";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
-  const [verificationCode, setVerificationCode] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -31,7 +30,7 @@ const useAuth = () => {
   }, []);
 
   const signup = async ({ email, password, firstName, lastName, username }) => {
-    const toastId = toast.loading("Checking email and username...");
+    const toastId = toast.loading("Creating your account...");
 
     try {
       const usersRef = collection(db, "users");
@@ -53,44 +52,6 @@ const useAuth = () => {
         return { success: false };
       }
 
-      // Send verification code
-      toast.loading("Sending verification code...", { id: toastId });
-
-      const res = await fetch("https://code-send.onrender.com/api/send-code", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        toast.dismiss(toastId);
-        toast.error(data.message || "Failed to send verification code.");
-        return { success: false };
-      }
-
-      setVerificationCode(data.code);
-      toast.success("✅ Verification code sent!", { id: toastId });
-      return { success: true, codeSent: true };
-    } catch (err) {
-      toast.dismiss(toastId);
-      toast.error("❌ Signup failed.");
-      return { success: false };
-    }
-  };
-
-  const verifyCode = async (inputCode, userInfo) => {
-    const { email, password, firstName, lastName, username } = userInfo;
-
-    if (inputCode !== verificationCode) {
-      toast.error("❌ Incorrect verification code.");
-      return { success: false };
-    }
-
-    const toastId = toast.loading("Creating your account...");
-
-    try {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       const userRef = doc(db, "users", cred.user.uid);
 
@@ -106,7 +67,7 @@ const useAuth = () => {
         walletBalance: 0,
         transactions: [],
         assets: [],
-        bio:" joined thundervext",
+        bio: "joined thundervext",
         location: "US",
         followers: 0,
         following: 0,
@@ -186,7 +147,7 @@ const useAuth = () => {
           walletBalance: 0,
           transactions: [],
           assets: [],
-          bio:" joined thundervext",
+          bio: "joined thundervext",
           location: "US",
           followers: 0,
           following: 0,
@@ -214,7 +175,6 @@ const useAuth = () => {
   return {
     user,
     signup,
-    verifyCode,
     login,
     loginWithGoogle,
     logout,

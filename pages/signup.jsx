@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import "../styles/signup.css";
 import useAuth from "../config/Hooks/auth";
-import { useNavigate, Link  } from "react-router-dom";
-import { toast } from "sonner"; // ✅ NEW
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const Signup = () => {
-  const { signup, verifyCode, error, loading ,  loginWithGoogle } = useAuth();
+  const { signup, loginWithGoogle } = useAuth();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -19,10 +20,6 @@ const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [codeSent, setCodeSent] = useState(false);
-  const [verificationInput, setVerificationInput] = useState("");
-  const navigate = useNavigate();
-
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -43,34 +40,21 @@ const Signup = () => {
 
     const result = await signup({ email, password, firstName, lastName, username });
 
-    if (result.codeSent) {
-      setCodeSent(true);
-      toast.success("Verification code sent to your email.");
+    if (result.success) {
+      toast.success("✅ Account created successfully.");
+      navigate("/home");
     } else {
-      toast.error(result.error || "Failed to send verification code.");
+      toast.error("❌ Account creation failed.");
     }
   };
 
- const handleVerify = async () => {
-  if (verificationInput.length !== 6) return;
-
-  const result = await verifyCode(verificationInput, formData);
-  if (result.success) {
-    toast.success("✅ Account created successfully.");
-    navigate("/home"); // ✅ this line navigates the user
-  } else {
-    toast.error(result.error || "❌ Verification failed.");
-  }
-};
-
-const handleGoogleLogin = async () => {
-  const result = await loginWithGoogle();
-  if (result.success) {
-    toast.success("🎉 Signed in with Google!");
-    navigate("/home");
-  }
-};
-
+  const handleGoogleLogin = async () => {
+    const result = await loginWithGoogle();
+    if (result.success) {
+      toast.success("🎉 Signed in with Google!");
+      navigate("/home");
+    }
+  };
 
   return (
     <div className="signup-interface">
@@ -152,11 +136,9 @@ const handleGoogleLogin = async () => {
             </label>
           </div>
 
-          <button className="signupBtn" type="submit" disabled={loading}>
+          <button className="signupBtn" type="submit">
             <i className="fa-solid fa-user-plus"></i> Create Account
           </button>
-
-          {error && <div className="statusMsg error">{error}</div>}
 
           <div className="orDivider">
             <span></span>
@@ -164,59 +146,15 @@ const handleGoogleLogin = async () => {
             <span></span>
           </div>
 
-       <button className="googleBtn" type="button" onClick={handleGoogleLogin}>
-  <i className="fa-brands fa-google"></i> Continue with Google
-</button>
+          <button className="googleBtn" type="button" onClick={handleGoogleLogin}>
+            <i className="fa-brands fa-google"></i> Continue with Google
+          </button>
 
-
-       <div className="loginRow">
-  Already have an account? <Link to="/login">Sign in</Link>
-</div>
+          <div className="loginRow">
+            Already have an account? <Link to="/login">Sign in</Link>
+          </div>
         </form>
       </div>
-
-      {/* Code Entry Modal */}
-      {codeSent && (
-        <div className="codeModal">
-          <div className="codeModalContent">
-            <h4>🔐 Enter Verification Code</h4>
-            <p>Sent to <strong>{formData.email}</strong></p>
-
-            <div className="codeBoxes">
-              {[...Array(6)].map((_, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  maxLength="1"
-                  className="codeInput"
-                  value={verificationInput[index] || ""}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    if (!/^[0-9]?$/.test(val)) return;
-
-                    const updated = verificationInput.split("");
-                    updated[index] = val;
-                    setVerificationInput(updated.join(""));
-
-                    if (val && index < 5) {
-                      document.getElementById(`code-${index + 1}`)?.focus();
-                    }
-                  }}
-                  id={`code-${index}`}
-                />
-              ))}
-            </div>
-
-            <button
-              className="verifyBtn"
-              onClick={handleVerify}
-              disabled={verificationInput.length !== 6}
-            >
-              ✅ Verify Code
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
