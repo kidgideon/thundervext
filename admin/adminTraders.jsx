@@ -15,6 +15,7 @@ const AdminTraders = () => {
     profit: "",
     loss: "",
     picture: null,
+    copyPrice: "",
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -34,9 +35,9 @@ const AdminTraders = () => {
   };
 
   const handleAddTrader = async () => {
-    const { firstName, lastName, username, profit, loss, picture } = inputs;
+    const { firstName, lastName, username, profit, loss, picture, copyPrice } = inputs;
 
-    if (!firstName || !lastName || !username || !profit || !loss) {
+    if (!firstName || !lastName || !username || !profit || !loss || !copyPrice) {
       toast.error("Fill all fields");
       return;
     }
@@ -57,6 +58,7 @@ const AdminTraders = () => {
         firstName,
         lastName,
         username,
+        copyPrice: Number(copyPrice),
         profit: Number(profit),
         loss: Number(loss),
         picture: pictureUrl,
@@ -71,6 +73,7 @@ const AdminTraders = () => {
         profit: "",
         loss: "",
         picture: null,
+        copyPrice: "",
       });
     } catch (err) {
       console.error("Upload failed", err);
@@ -121,6 +124,13 @@ const AdminTraders = () => {
             name="loss"
             placeholder="Loss %"
             value={inputs.loss}
+            onChange={handleInputChange}
+          />
+           <input
+            type="number"
+            name="copyPrice"
+            placeholder="copy price"
+            value={inputs.copyPrice}
             onChange={handleInputChange}
           />
           <input

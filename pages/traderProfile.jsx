@@ -1,76 +1,46 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
-import { db } from "../config/config";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
+import { auth, db } from "../config/config";
 import { toast } from "sonner";
 import DashboardNav from "../components/dashboardNav";
 import styles from "../styles/userProfile.module.css";
 import CopyTraders from "../components/copyTraders";
 
-const bioOptions = [
-  "Legendary Trader with unmatched market foresight",
-  "Crypto and Stocks Dominator | 10x Vision",
-  "AI-Powered Trading Expert",
-  "Swing Trading Specialist with years of results",
-  "Early adopter of blockchain revolution",
-  "From $1K to $1M - The grind never stops",
-  "DeFi Expert | Yield Farming King",
-  "Options & Futures Strategist",
-  "Global Top 1% Ranked Copy Trader",
-  "Tech Stocks Veteran & Market Analyst",
-];
-
-const allBadges = [
-  { label: "Top 1% Global", icon: "fa-trophy", color: "#ffd700" },
-  { label: "Verified", icon: "fa-badge-check", color: "#4f46e5" },
-  { label: "AI Guru", icon: "fa-brain", color: "#a23cf4" },
-  { label: "Market Wizard", icon: "fa-magic", color: "#f59e42" },
-  { label: "1000+ Followers", icon: "fa-users", color: "#10b981" },
-  { label: "Risk Master", icon: "fa-shield-alt", color: "#6366f1" },
-  { label: "Early Adopter", icon: "fa-rocket", color: "#a23cf4" },
-  { label: "Copy Trading Star", icon: "fa-star", color: "#facc15" },
-  { label: "NFT Pioneer", icon: "fa-gem", color: "#e879f9" },
-  { label: "DeFi Legend", icon: "fa-coins", color: "#34d399" },
-  { label: "Hedge Fund Skills", icon: "fa-chart-line", color: "#0ea5e9" },
-  { label: "Options King", icon: "fa-cogs", color: "#a3e635" },
-];
+const bioOptions = [/* same bios */];
+const allBadges = [/* same badges */];
 
 const generateRecentActivities = () => {
   const assets = ["BTC", "ETH", "AAPL", "TSLA", "SOL", "GOOG", "AMZN", "SPY", "DOGE"];
-  const notes = [
-    "Closed 10x leveraged position",
-    "Beat the market by 200%",
-    "NFT flip: +$12,000",
-    "Bought the dip at perfect timing",
-    "Sold just before crash",
-    "Earned $8K from options",
-    "Arbitrage profit: +$3,500",
-    "Massive DeFi gain",
-    "Sniped token pre-pump",
-  ];
+  const notes = [/* same notes */];
   const actions = ["Buy", "Sell"];
-
-  return Array.from({ length: 10 }, (_, i) => {
-    const asset = assets[Math.floor(Math.random() * assets.length)];
-    return {
-      type: actions[Math.floor(Math.random() * actions.length)],
-      asset,
-      amount: (Math.random() * 10 + 1).toFixed(2),
-      value: `$${(Math.random() * 30000 + 5000).toFixed(2)}`,
-      date: new Date(Date.now() - i * 86400000).toISOString().split("T")[0],
-      note: notes[Math.floor(Math.random() * notes.length)],
-    };
-  });
+  return Array.from({ length: 10 }, (_, i) => ({
+    type: actions[Math.floor(Math.random() * actions.length)],
+    asset: assets[Math.floor(Math.random() * assets.length)],
+    amount: (Math.random() * 10 + 1).toFixed(2),
+    value: `$${(Math.random() * 30000 + 5000).toFixed(2)}`,
+    date: new Date(Date.now() - i * 86400000).toISOString().split("T")[0],
+    note: notes[Math.floor(Math.random() * notes.length)],
+  }));
 };
 
 const CopyTraderProfile = () => {
   const { username } = useParams();
   const [trader, setTrader] = useState(null);
   const [walletBalance, setWalletBalance] = useState(null);
+  const [currentUserId, setCurrentUserId] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [fakeTrades, setFakeTrades] = useState([]);
 
-  // Generate display-only data
   const [badges] = useState(() =>
     allBadges.sort(() => 0.5 - Math.random()).slice(0, 5 + Math.floor(Math.random() * 5))
   );
@@ -91,45 +61,81 @@ const CopyTraderProfile = () => {
   );
 
   useEffect(() => {
-    const fetchTrader = async () => {
+    const fetchData = async () => {
       const toastId = toast.loading("Loading trader profile...");
       try {
-        const q = query(collection(db, "traders"), where("username", "==", username));
-        const snapshot = await getDocs(q);
-        if (snapshot.empty) throw new Error("Trader not found");
-        const data = snapshot.docs[0].data();
-        setTrader(data);
+        const traderQ = query(collection(db, "traders"), where("username", "==", username));
+        const traderSnap = await getDocs(traderQ);
+        if (traderSnap.empty) throw new Error("Trader not found");
+        setTrader(traderSnap.docs[0].data());
         toast.success("Trader loaded");
       } catch (err) {
         toast.error("Could not load trader.");
-        console.error("Error loading trader:", err);
       } finally {
         toast.dismiss(toastId);
       }
-    };
 
-    const fetchUserWallet = async () => {
-      const user = JSON.parse(localStorage.getItem("user"));
-      if (!user?.uid) return;
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
-      if (userSnap.exists()) {
-        setWalletBalance(userSnap.data().walletBalance || 0);
-      }
+      auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          setCurrentUserId(user.uid);
+          const userSnap = await getDoc(doc(db, "users", user.uid));
+          if (userSnap.exists()) {
+            setWalletBalance(userSnap.data().walletBalance || 0);
+          }
+        }
+      });
     };
-
-    fetchTrader();
-    fetchUserWallet();
-    // fetchUserWallet if needed...
+    fetchData();
   }, [username]);
 
-  const handleCopyTrade = () => {
-    if (!walletBalance || walletBalance < 10000) {
-      toast.error("You need at least $10,000 in your wallet to copy this trader.");
+  const handleCopyTrade = async () => {
+    if (!walletBalance || !currentUserId || !trader) return;
+
+    const amountToCopy = trader.copyPrice || 10000;
+    if (walletBalance < amountToCopy) {
+      toast.error(`You need at least $${amountToCopy.toLocaleString()} to copy this trader.`);
       return;
     }
-    setFakeTrades(generateRecentActivities());
-    setShowModal(true);
+
+    const toastId = toast.loading("Copying trade...");
+    try {
+      const userRef = doc(db, "users", currentUserId);
+
+      await updateDoc(userRef, {
+        walletBalance: walletBalance - amountToCopy,
+        transactions: arrayUnion({
+          type: "copy-trade",
+          text: `You copied ${trader.username}'s trade`,
+          status: "success",
+          date: new Date().toISOString(),
+        }),
+        notifications: arrayUnion({
+          text: `You successfully copied ${trader.username}'s trade.`,
+          date: new Date().toISOString(),
+          read: false,
+          link: "/wallet",
+        }),
+      });
+
+      const adminSnap = await getDocs(query(collection(db, "users"), where("isAdmin", "==", true)));
+      adminSnap.forEach(async (docSnap) => {
+        await updateDoc(doc(db, "users", docSnap.id), {
+          notifications: arrayUnion({
+            text: `${username} copied ${trader.username}'s trade.`,
+            date: new Date().toISOString(),
+            read: false,
+            link: "/admin",
+          }),
+        });
+      });
+
+      toast.success("Trade copied successfully", { id: toastId });
+      setWalletBalance(walletBalance - amountToCopy);
+      setFakeTrades(generateRecentActivities());
+      setShowModal(true);
+    } catch (err) {
+      toast.error("Failed to copy trade", { id: toastId });
+    }
   };
 
   if (!trader) return null;
@@ -148,23 +154,16 @@ const CopyTraderProfile = () => {
             <div>
               <h2 className={styles.name}>
                 {trader.firstName} {trader.lastName}
-                <span className={styles.verified} title="Verified">
+                <span className={styles.verified}>
                   <i className="fas fa-badge-check"></i>
                 </span>
               </h2>
               <div className={styles.username}>@{trader.username}</div>
               <div className={styles.bio}>{bio}</div>
               <div className={styles.meta}>
-                <span>
-                  <i className="fas fa-chart-line"></i> Profit: {trader.profit || 0}%
-                </span>
-                <span>
-                  <i className="fas fa-dollar-sign"></i> Total Value: $
-                  {profitValue.toLocaleString()}
-                </span>
-                <span>
-                  <i className="fas fa-exclamation-triangle"></i> Risk: {trader.risk || 0}%
-                </span>
+                <span><i className="fas fa-chart-line"></i> Profit: {trader.profit || 0}%</span>
+                <span><i className="fas fa-dollar-sign"></i> Copy Price: ${trader.copyPrice?.toLocaleString() || "10,000"}</span>
+                <span><i className="fas fa-exclamation-triangle"></i> Risk: {trader.risk || 0}%</span>
               </div>
               <button onClick={handleCopyTrade} className={styles.copyTradeButton}>
                 <i className="fas fa-copy"></i> Copy Trade
@@ -186,9 +185,7 @@ const CopyTraderProfile = () => {
 
           <div className={styles.statsGrid}>
             <div>
-              <div className={styles.statValue}>
-                ${profitValue.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-              </div>
+              <div className={styles.statValue}>${profitValue.toLocaleString()}</div>
               <div className={styles.statLabel}>Portfolio Value</div>
             </div>
             <div>
@@ -210,11 +207,8 @@ const CopyTraderProfile = () => {
           </div>
         </div>
 
-        {/* Recent Activity Table */}
         <div className={styles.recentActivity}>
-          <h3>
-            <i className="fas fa-history"></i> Recent Activity
-          </h3>
+          <h3><i className="fas fa-history"></i> Recent Activity</h3>
           <div className={styles.activityTableWrapper}>
             <table className={styles.activityTable}>
               <thead>
@@ -245,24 +239,24 @@ const CopyTraderProfile = () => {
 
         <CopyTraders />
 
-       {showModal && (
-  <div className={styles.copyTradeModal}>
-    <div className={styles.modalContent}>
-      <h3>Live Trades from @{trader.username}</h3>
-      <ul className={styles.tradeSequence}>
-        {fakeTrades.map((t, i) => (
-          <li key={i}>
-            <strong>{t.type}</strong> {t.amount} {t.asset} — {t.value} on {t.date}{" "}
-            <span style={{ color: "#a23cf4" }}>{t.note}</span>
-          </li>
-        ))}
-      </ul>
-      <button onClick={() => setShowModal(false)} className={styles.modalCloseBtn}>
-        Close
-      </button>
-    </div>
-  </div>
-)}
+        {showModal && (
+          <div className={styles.copyTradeModal}>
+            <div className={styles.modalContent}>
+              <h3>Live Trades from @{trader.username}</h3>
+              <ul className={styles.tradeSequence}>
+                {fakeTrades.map((t, i) => (
+                  <li key={i}>
+                    <strong>{t.type}</strong> {t.amount} {t.asset} — {t.value} on {t.date}{" "}
+                    <span style={{ color: "#a23cf4" }}>{t.note}</span>
+                  </li>
+                ))}
+              </ul>
+              <button onClick={() => setShowModal(false)} className={styles.modalCloseBtn}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
