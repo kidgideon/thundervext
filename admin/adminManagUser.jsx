@@ -11,6 +11,7 @@ import {
   deleteField,
   setDoc,
 } from "firebase/firestore";
+import AdminTransactionDetails from "../components/adminTransactions";
 import { toast } from "sonner";
 import { db } from "../config/config";
 import AdminNavbar from "../components/adminNavbar";
@@ -229,6 +230,9 @@ const ManageUser = () => {
               </div>
             </>
           )}
+
+         <AdminTransactionDetails username={username}/>
+
         </div>
     </div>
   );
