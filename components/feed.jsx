@@ -80,7 +80,7 @@ const Feed = () => {
   };
 
   const handleAvatarClick = () => {
-    toast("This post was made by Thundervext Admin 👑");
+    toast("This post was made by Gainovia Admin 👑");
   };
 
   const handleShare = () => {
@@ -127,7 +127,7 @@ const Feed = () => {
                       style={{ cursor: "pointer" }}
                     />
                     <div>
-                      <h4>Thundervext</h4>
+                      <h4>Gainovia</h4>
                       <p>{formattedDate}</p>
                     </div>
                   </div>

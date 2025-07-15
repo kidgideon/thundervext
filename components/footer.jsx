@@ -5,7 +5,7 @@ const Footer = () => (
         <div className="footer-modern-content">
             <div className="footer-brand">
                 <div>
-                    <i className="fa-solid fa-bolt icon"></i> THUNDERVEXT
+                    <i className="fa-solid fa-bolt icon"></i> Gainovia
                 </div>
                 <p>Empowering your financial future, one trade at a time.</p>
             </div>
@@ -38,7 +38,7 @@ const Footer = () => (
             </div>
         </div>
         <div className="footer-modern-bottom">
-            <span>&copy; {new Date().getFullYear()} Thundervext. All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} Gainovia. All rights reserved.</span>
         </div>
     </footer>
 );

@@ -31,7 +31,7 @@ const NavBar = () => {
             <div className="navStart">
                 <div className="iconSection" style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
                     <i style={{ marginLeft: "30px" }} className="fa-solid fa-bolt icon"></i>
-                    <h3 className="iconText">THUNDERVEXT</h3>
+                    <h3 className="iconText">Gainovia</h3>
                 </div>
             </div>
 

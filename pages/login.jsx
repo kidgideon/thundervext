@@ -36,7 +36,7 @@ const Login = () => {
         <span className="welcomeBack">Welcome Back</span>
         <div className="topLayer">
           <i className="fa-solid fa-bolt icon"></i>
-          <h3 className="iconText">THUNDERVEXT</h3>
+          <h3 className="iconText">Gainovia</h3>
         </div>
         <form className="authpage-formInputs" onSubmit={handleSubmit}>
           <input

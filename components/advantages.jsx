@@ -69,7 +69,7 @@ const Advantages = () => {
             Core <span className={styles.gradientText}>Advantages</span>
           </h2>
           <p className={styles.sectionSubtitle}>
-            Discover why millions of traders choose Thundervext for their 
+            Discover why millions of traders choose Gainovia for their 
             investment journey. From cutting-edge technology to world-class 
             support, we provide everything you need to succeed in global markets.
           </p>

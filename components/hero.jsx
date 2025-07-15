@@ -22,7 +22,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               Invest Smarter with{' '}
-              <span className={styles.gradientText}>Thundervext</span>
+              <span className={styles.gradientText}>Gainovia</span>
             </motion.h1>
             
             <motion.p 
