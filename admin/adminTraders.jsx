@@ -13,7 +13,6 @@ import AdminNavbar from "../components/adminNavbar";
 import "../styles/payment.css";
 import { toast } from "sonner";
 
-
 const AdminTraders = () => {
   const [inputs, setInputs] = useState({
     firstName: "",
