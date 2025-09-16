@@ -1,0 +1,131 @@
+.tradeHomeInterface {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 70px;
+  background-color: #fff; /* White background */
+  color: #1f0b3a; /* Default text color */
+}
+
+.tradeHomeInterfaceSlideStock {
+  width: 100%;
+}
+
+.standard-control {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px 0;
+}
+
+/* Purple glass background for sections container */
+.sections-container {
+  width: 100%;
+  background: #1f0b3a; /* dark purple */
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Glassmorphism effect for section cards */
+.standard-div-alignment-port {
+  width: 95%;
+  display: flex;
+  flex-direction: row; /* side by side on desktop */
+  flex-wrap: wrap;
+  margin: 0 auto 60px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12); /* translucent glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px 0px;
+}
+
+.standard-div-alignment-port:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* Alternate layout for even sections */
+.section-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.section-row:nth-child(even) .section-image {
+  order: 2;
+}
+
+.section-row:nth-child(even) .section-text-container {
+  order: 1;
+}
+
+/* Image styling with max-width and max-height */
+.section-image {
+  flex: 1 1 45%;
+  max-width: 500px; /* limits size on desktop */
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0 20px 20px 0;
+}
+
+.section-text-container {
+  flex: 1 1 50%;
+  padding: 20px 30px;
+  color: #fff; /* text contrasts purple background */
+}
+
+/* Section titles with accent */
+.section-title {
+  font-size: 2rem;
+  color: #a23cf4;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: #a23cf4;
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+.section-text {
+  font-size: 1rem;
+  line-height: 1.8rem;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 900px) {
+  .standard-div-alignment-port {
+    flex-direction: column; /* stack image above text */
+    text-align: center;
+  }
+
+  .section-image {
+    width: 90%;
+    height: auto;
+    margin: 0 auto 20px auto;
+  }
+
+  .section-text-container {
+    flex: 1 1 100%;
+    padding: 10px 20px;
+  }
+}

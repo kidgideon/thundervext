@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import usFlag from "../images/us.png";
 
 const NAV_LINKS = [
-    { label: "Trading", href: "/signup" },
-    { label: "Investment", href: "/signup" },
-    { label: "Top markets", href: "/signup" },
-    { label: "Company", href: "/signup" },
+    { label: "Trading", href: "/trading" },
+    { label: "Investment", href: "/investment" },
+    { label: "Top markets", href: "/top-market" },
+    { label: "Company", href: "/company" },
 ];
 
 const NavBar = () => {

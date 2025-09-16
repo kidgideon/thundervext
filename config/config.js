@@ -24,3 +24,14 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 export default app;
+
+// qbtrades
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCNAo1ui6AKIId8mhfGVBUnECoiGgirF4Q",
+//   authDomain: "qbtrades-official.firebaseapp.com",
+//   projectId: "qbtrades-official",
+//   storageBucket: "qbtrades-official.firebasestorage.app",
+//   messagingSenderId: "513051608262",
+//   appId: "1:513051608262:web:3f75119de2fdf89ea5c3c7",
+//   measurementId: "G-T5ZQZ942M6"
+// };

@@ -21,12 +21,12 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = formData;
     const result = await login(email, password);
-    if (result.success) navigate("/dashboard");
+    if (result.success) navigate("/home");
   };
 
   const handleGoogleLogin = async () => {
     const result = await loginWithGoogle();
-    if (result.success) navigate("/dashboard");
+    if (result.success) navigate("/home");
   };
 
   return (

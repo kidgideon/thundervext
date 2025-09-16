@@ -6,6 +6,11 @@ import Home from '../pages/home';
 import Signup from '../pages/signup';
 import Login from '../pages/login';
 import ForgotPassword from '../pages/forgot';
+import Trading from '../pages/Trading';
+import Company from '../pages/company';
+import Investment from '../pages/investment';
+import TopMarket from '../pages/topmarket';
+
 
 import Dashboard from '../pages/dashboard';
 import Market from '../pages/market';
@@ -38,7 +43,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/trading" element={<Trading />} />
+          <Route path="/company" element={<Company />} />
+            <Route path="/investment" element={<Investment />} />
+              <Route path="/top-market" element={<TopMarket />} />
         <Route path="/reset-pwd" element={<ForgotPassword />} />
+
 
         {/* Protected Routes (For Authenticated Users) */}
         <Route path="/home" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
