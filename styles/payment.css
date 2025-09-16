@@ -231,6 +231,54 @@ this is the base color for this project #9e5fff */
   color: white;
 }
 
+.trader-list {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.trader-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: rgba(242, 242, 242, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.trader-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.trader-info {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #1f0b3a;
+}
+
+.trader-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-icon {
+  cursor: pointer;
+  color: #a23cf4;
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+}
+
+.action-icon:hover {
+  transform: scale(1.2);
+  color: #6e0fcf;
+}
+
 
 @media (max-width: 768px) {
    
