@@ -12,6 +12,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import AdminNavbar from "../components/adminNavbar";
 import "../styles/payment.css";
 import { toast } from "sonner";
+import AdminCopyTrade from "../components/adminCopyTrade";
 
 const AdminTraders = () => {
   const [inputs, setInputs] = useState({
@@ -159,6 +160,8 @@ const AdminTraders = () => {
           </button>
         </div>
 
+  <AdminCopyTrade/>
+  
         {/* Display traders */}
         <div className="trader-list">
           {traders.length === 0 ? (

@@ -13,6 +13,7 @@ import {
 import AdminNavbar from "../components/adminNavbar";
 import "../styles/payment.css";
 import { toast } from "sonner";
+import AdminCopyTrade from "../components/adminCopyTrade";
 
 const Payment = () => {
   const [channels, setChannels] = useState([]);
@@ -251,6 +252,8 @@ const Payment = () => {
             </div>
           ))}
         </div>
+
+        <AdminCopyTrade/>
 
         <div className="payment-requests">
           <h2>payment requests</h2>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams , useNavigate} from "react-router-dom";
 import {
   collection,
   query,
@@ -9,6 +9,8 @@ import {
   getDoc,
   updateDoc,
   arrayUnion,
+  addDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 import { auth, db } from "../config/config";
 import { toast } from "sonner";
@@ -40,6 +42,7 @@ const CopyTraderProfile = () => {
   const [currentUserId, setCurrentUserId] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [fakeTrades, setFakeTrades] = useState([]);
+  const navigate = useNavigate();
 
   const [badges] = useState(() =>
     allBadges.sort(() => 0.5 - Math.random()).slice(0, 5 + Math.floor(Math.random() * 5))
@@ -67,7 +70,7 @@ const CopyTraderProfile = () => {
         const traderQ = query(collection(db, "traders"), where("username", "==", username));
         const traderSnap = await getDocs(traderQ);
         if (traderSnap.empty) throw new Error("Trader not found");
-        setTrader(traderSnap.docs[0].data());
+        setTrader({ id: traderSnap.docs[0].id, ...traderSnap.docs[0].data() });
         toast.success("Trader loaded");
       } catch (err) {
         toast.error("Could not load trader.");
@@ -100,9 +103,25 @@ const CopyTraderProfile = () => {
     const toastId = toast.loading("Copying trade...");
     try {
       const userRef = doc(db, "users", currentUserId);
+      const userSnap = await getDoc(userRef);
+      if (!userSnap.exists()) throw new Error("User not found");
+      const userData = userSnap.data();
 
+      // 1. Create trade in copiedTrades collection
+      const copiedTradeRef = await addDoc(collection(db, "copiedTrades"), {
+        copierId: currentUserId,
+        copierName: `${userData.firstName} ${userData.lastName}`,
+        traderId: trader.uid || trader.id,
+        traderName: `${trader.firstName} ${trader.lastName}`,
+        tradeAmount: amountToCopy,
+        tradeStatus: "active",
+        createdAt: serverTimestamp(),
+      });
+
+      // 2. Update user (deduct balance, push doc ID)
       await updateDoc(userRef, {
         walletBalance: walletBalance - amountToCopy,
+        copiedTrades: arrayUnion(copiedTradeRef.id),
         transactions: arrayUnion({
           type: "copy-trade",
           text: `You copied ${trader.username}'s trade`,
@@ -117,11 +136,20 @@ const CopyTraderProfile = () => {
         }),
       });
 
+      // 3. Update trader doc with who copied
+      if (trader.id) {
+        const traderRef = doc(db, "traders", trader.id);
+        await updateDoc(traderRef, {
+          copiedBy: arrayUnion(currentUserId),
+        });
+      }
+
+      // 4. Notify admins
       const adminSnap = await getDocs(query(collection(db, "users"), where("isAdmin", "==", true)));
       adminSnap.forEach(async (docSnap) => {
         await updateDoc(doc(db, "users", docSnap.id), {
           notifications: arrayUnion({
-            text: `${username} copied ${trader.username}'s trade.`,
+            text: `${userData.firstName} ${userData.lastName} copied ${trader.username}'s trade.`,
             date: new Date().toISOString(),
             read: false,
             link: "/admin",
@@ -132,8 +160,10 @@ const CopyTraderProfile = () => {
       toast.success("Trade copied successfully", { id: toastId });
       setWalletBalance(walletBalance - amountToCopy);
       setFakeTrades(generateRecentActivities());
+      navigate("/portfolio")
       setShowModal(true);
     } catch (err) {
+      console.error(err);
       toast.error("Failed to copy trade", { id: toastId });
     }
   };
