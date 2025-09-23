@@ -12,7 +12,6 @@ const ClientsCopiedTrades = () => {
 
     const fetchUserTrades = async (uid) => {
       try {
-        // get user doc
         const userDoc = await getDoc(doc(db, "users", uid));
         if (!userDoc.exists()) {
           setTrades([]);
@@ -29,7 +28,6 @@ const ClientsCopiedTrades = () => {
           return;
         }
 
-        // query copiedTrades collection by IDs
         const q = query(
           collection(db, "copiedTrades"),
           where("__name__", "in", copiedIds.slice(0, 10)) // Firestore "in" query limit = 10
@@ -100,11 +98,17 @@ const ClientsCopiedTrades = () => {
                   <td>
                     <span
                       className={`adminCopyTrade-status ${
-                        t.tradeStatus === "active" ? "active" : "inactive"
+                        t.tradeStatus === "active"
+                          ? "active"
+                          : t.tradeStatus === "inactive"
+                          ? "paused"
+                          : "ended"
                       }`}
                     >
                       {t.tradeStatus === "active"
                         ? "Trade is Active"
+                        : t.tradeStatus === "inactive"
+                        ? "Trade Paused"
                         : "Trade Ended"}
                     </span>
                   </td>

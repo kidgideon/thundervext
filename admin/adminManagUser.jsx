@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { db } from "../config/config";
 import AdminNavbar from "../components/adminNavbar";
 import "../styles/manageUsers.css";
+import AdminUserNotifications from "../components/adminNotifications";
 
 const stockOptions = [
   "Bitcoin", "Ethereum", "Tesla", "Apple", "Google", "Amazon", "Solana", "Dogecoin", "SPY", "NVDA",
@@ -230,9 +231,8 @@ const ManageUser = () => {
               </div>
             </>
           )}
-
          <AdminTransactionDetails username={username}/>
-
+          <AdminUserNotifications userId={userDocId}/>
         </div>
     </div>
   );

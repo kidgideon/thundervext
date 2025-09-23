@@ -424,4 +424,92 @@ this is the base color for this project #9e5fff */
 }
 
 
+/* Scoped only for AdminUserNotifications */
+.admin-notifications-table {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  font-size: 70%;
+}
+
+.admin-notifications-table h2 {
+  color: #9e5fff;
+  margin-bottom: 15px;
+}
+
+/* Table */
+.admin-notifications-table table {
+  width: 95%;
+  border-collapse: collapse;
+  background-color: #1f0b3a;
+  color: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin-notifications-table th,
+.admin-notifications-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.admin-notifications-table thead {
+  background-color: #2d1252;
+}
+
+.admin-notifications-table th {
+  color: #cccccc;
+  font-weight: 600;
+}
+
+/* Action button */
+.admin-notifications-table button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  background-color: #ff4d4f;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.admin-notifications-table button:hover {
+  background-color: #d9363e;
+}
+
+/* Notification text styles */
+.admin-notifications-table td span {
+  font-size: 0.9rem;
+}
+
+/* Status colors if you want to highlight read/unread */
+.admin-notifications-table td span.unread {
+  color: #00c97e; /* green for unread */
+  font-weight: 600;
+}
+
+.admin-notifications-table td span.read {
+  color: #888; /* gray for read */
+  font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-notifications-table table {
+    width: 100%;
+    font-size: 75%;
+  }
+
+  .admin-notifications-table button {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
 

@@ -6,14 +6,12 @@ const AdminCopyTrade = () => {
   const [trades, setTrades] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // fetch trades from Firestore
   useEffect(() => {
     const fetchTrades = async () => {
       try {
         const snap = await getDocs(collection(db, "copiedTrades"));
         const list = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 
-        // sort latest first
         const sorted = [...list].sort(
           (a, b) => b.createdAt?.toDate() - a.createdAt?.toDate()
         );
@@ -29,15 +27,15 @@ const AdminCopyTrade = () => {
     fetchTrades();
   }, []);
 
-  // make a trade inactive
-  const deactivateTrade = async (id) => {
+  const toggleTradeStatus = async (id, currentStatus) => {
+    const newStatus = currentStatus === "active" ? "inactive" : "active";
     try {
-      await updateDoc(doc(db, "copiedTrades", id), { tradeStatus: "inactive" });
+      await updateDoc(doc(db, "copiedTrades", id), { tradeStatus: newStatus });
       setTrades((prev) =>
-        prev.map((t) => (t.id === id ? { ...t, tradeStatus: "inactive" } : t))
+        prev.map((t) => (t.id === id ? { ...t, tradeStatus: newStatus } : t))
       );
     } catch (err) {
-      console.error("Error deactivating trade:", err);
+      console.error("Error updating trade:", err);
     }
   };
 
@@ -90,16 +88,12 @@ const AdminCopyTrade = () => {
                       : "—"}
                   </td>
                   <td>
-                    {t.tradeStatus === "active" ? (
-                      <button
-                        className="adminCopyTrade-deactivate"
-                        onClick={() => deactivateTrade(t.id)}
-                      >
-                        End trade
-                      </button>
-                    ) : (
-                      <span style={{ opacity: 0.6 }}>—</span>
-                    )}
+                    <button
+                      className="adminCopyTrade-deactivate"
+                      onClick={() => toggleTradeStatus(t.id, t.tradeStatus)}
+                    >
+                      {t.tradeStatus === "active" ? "Pause" : "Resume"}
+                    </button>
                   </td>
                 </tr>
               ))
