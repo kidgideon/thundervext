@@ -1,0 +1,442 @@
+/* Page background */
+.create-robot-admin-mx90 {
+  background: #fff;
+  width: 100%;
+  color: #1f0b3a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Form */
+.robot-form-mx90 {
+  max-width: 350px;
+  width: 100%;
+  background: #1f0b3a;
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+/* Image input circle */
+.image-circle-mx90 {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #29114d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.image-circle-mx90 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.robot-form-mx90 input,
+.robot-form-mx90 button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+}
+
+.robot-form-mx90 input {
+  background: #fff;
+  color: #000;
+}
+
+.robot-form-mx90 button {
+  background: #00ff94;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.robot-form-mx90 button[disabled] {
+  background: #999;
+  cursor: not-allowed;
+}
+
+/* Robot list */
+.robot-list-mx90 {
+  display: flex;
+  width: 95%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.robot-card-mx90 {
+  background: #1f0b3a;
+  width: 300px;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+.robot-card-mx90 img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.robot-actions-mx90 {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.robot-actions-mx90 button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.robot-actions-mx90 button:first-child {
+  background: #3399ff;
+  color: #fff;
+}
+
+.robot-actions-mx90 button:last-child {
+  background: #ff4444;
+  color: #fff;
+}
+
+/* ---------- Edit Modal (balanced & responsive) ---------- */
+.edit-modal-mx90 {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1200;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Modal card */
+.edit-form-mx90 {
+  width: 100%;
+  max-width: 360px;        /* keeps modal compact but roomy */
+  background: #1f0b3a;     /* purple form bg */
+  color: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 12px 40px rgba(23, 6, 45, 0.6);
+  transform-origin: center;
+  animation: modalInScale 220ms cubic-bezier(.2,.9,.3,1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+/* small entry animation */
+@keyframes modalInScale {
+  from { opacity: 0; transform: translateY(8px) scale(.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* header: title + close button */
+.edit-form-header-mx90 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.edit-form-header-mx90 h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* close button top-right */
+.modal-close-mx90 {
+  background: transparent;
+  border: none;
+  color: #ddd;
+  font-size: 1.05rem;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.modal-close-mx90:hover { color: #fff; background: rgba(255,255,255,0.03); }
+
+/* form content layout */
+.edit-form-content-mx90 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+/* image circle (re-usable) */
+.image-circle-mx90 {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #29114d;            /* slightly darker purple */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 18px rgba(14, 5, 30, 0.6);
+  flex-shrink: 0;
+}
+.image-circle-mx90 span {
+  font-size: 32px;
+  color: rgba(255,255,255,0.85);
+}
+.image-circle-mx90 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* inputs - clean, accessible */
+.edit-form-mx90 input[type="text"],
+.edit-form-mx90 input[type="number"],
+.edit-form-mx90 input[type="file"],
+.edit-form-mx90 textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #000;
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+}
+
+.edit-form-mx90 input[type="file"] {
+  display: none; /* we use the image circle label to trigger it */
+}
+
+/* small helper / label row */
+.input-row-mx90 {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+.input-row-mx90 .half {
+  flex: 1 1 0;
+}
+
+/*
+/* ---------- Edit Modal (balanced & responsive) ---------- */
+.edit-modal-mx90 {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 4, 18, 0.64);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1200;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Card */
+.edit-form-mx90 {
+  width: 100%;
+  max-width: 360px;                 /* compact & balanced */
+  background: #1f0b3a;              /* purple form bg */
+  color: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 12px 40px rgba(23, 6, 45, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  animation: modalInScale 220ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* entrance */
+@keyframes modalInScale {
+  from { opacity: 0; transform: translateY(8px) scale(.995); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Title */
+.edit-form-mx90 h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  width: 100%;
+  text-align: left;
+  padding-left: 6px;
+}
+
+/* form layout */
+.edit-form-mx90 form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding-top: 4px;
+  box-sizing: border-box;
+}
+
+/* image circle (label that opens file input) */
+.image-circle-mx90 {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #29114d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 18px rgba(14, 5, 30, 0.6);
+  margin: 4px auto 2px;
+  flex-shrink: 0;
+}
+.image-circle-mx90 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.image-circle-mx90 span {
+  font-size: 34px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1;
+}
+
+/* inputs (full width) */
+.edit-form-mx90 input[type="text"],
+.edit-form-mx90 input[type="number"],
+.edit-form-mx90 textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #000;
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+}
+
+/* file input (hidden) */
+.edit-form-mx90 input[type="file"] {
+  display: none;
+}
+
+/* group small numeric fields horizontally if desired (not required) */
+.input-row-mx90 {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+.input-row-mx90 .half {
+  flex: 1 1 0;
+}
+
+/* actions row */
+.edit-actions-mx90 {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 6px;
+  justify-content: space-between;
+}
+
+/* Save (submit) button — targets the submit button in your JSX */
+.edit-actions-mx90 button[type="submit"] {
+  flex: 1 1 auto;
+  background: linear-gradient(90deg,#00ff94,#00d17a);
+  color: #000;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 209, 122, 0.12);
+  transition: transform .08s ease, opacity .12s ease;
+}
+.edit-actions-mx90 button[type="submit"]:active { transform: translateY(1px); }
+.edit-actions-mx90 button[type="submit"][disabled] {
+  opacity: 0.62;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Cancel button (you already have this class in JSX) */
+.cancel-btn-mx90 {
+  flex: 1 1 auto;
+  background: #ff4444;
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+.cancel-btn-mx90:active { transform: translateY(1px); }
+
+/* responsive: stack buttons vertically on small screens */
+@media (max-width: 420px) {
+  .edit-form-mx90 { padding: 14px; max-width: 92%; }
+  .image-circle-mx90 { width: 82px; height: 82px; }
+  .edit-actions-mx90 { flex-direction: column; }
+  .edit-actions-mx90 button { width: 100%; }
+}
+
+/* focus accessibility */
+.edit-form-mx90 input:focus,
+.edit-actions-mx90 button:focus,
+.cancel-btn-mx90:focus {
+  outline: 3px solid rgba(0,255,148,0.10);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* small helper text */
+.edit-note-mx90 {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+  width: 100%;
+}
+
+/* keep scrollbars tidy when modal content is long */
+.edit-form-mx90::-webkit-scrollbar { width: 8px; }
+.edit-form-mx90::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 6px; }

@@ -1,0 +1,44 @@
+.chart-interface-x13 {
+  position: relative;
+  width: 90%;
+  background: #1f0b3a;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+  margin-top: 30px;
+}
+
+.chart-movement-x13 {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+
+.floating-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 5px 8px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 11px;
+  animation: floatUp 3s forwards;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.floating-label .term {
+  color: #ffcc33;
+  font-weight: bold;
+}
+
+.floating-label .profit {
+  color: #00ff55;
+  font-weight: bold;
+}
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -40px); }
+}

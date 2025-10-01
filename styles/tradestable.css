@@ -1,0 +1,61 @@
+.trades-table-container {
+  margin: 10px 0px;
+   width: 90%;
+  padding: 1rem;
+
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.trades-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  background-color: #1f0b3a;
+  color: white;
+}
+
+.trades-table th,
+.trades-table td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.trades-table th {
+  background-color: #1f0b3a;
+  font-weight: bold;
+}
+
+.trades-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+
+/* Status labels */
+.status {
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-transform: capitalize;
+}
+.status.active {
+  background: #d4edda;
+  color: #155724;
+}
+.status.paused {
+  background: #fff3cd;
+  color: #856404;
+}
+.status.ended {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.no-trades-msg {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+}

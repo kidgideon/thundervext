@@ -1,0 +1,68 @@
+.Robot-interface-mx-13 {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px;
+  background: #1f0b3a;
+  border-radius: 10px;
+  flex-direction: row;
+  flex-wrap: wrap; /* responsive */
+}
+
+.robot-mx-14 {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.robot-mx-14 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.default-ability-bar {
+  flex: 2 1 400px;
+  color: #fff;
+}
+
+.default-ability-bar h2 {
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.ability-bar {
+  margin-bottom: 12px;
+}
+
+.ability-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+}
+
+.ability-progress {
+  background: rgba(255, 255, 255, 0.1);
+  height: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.ability-fill {
+  background: linear-gradient(90deg, #00ff94, #007bff);
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.8s ease-in-out;
+}
+
+.trade-performance-note {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+}

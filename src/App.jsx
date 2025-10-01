@@ -10,6 +10,7 @@ import Trading from '../pages/Trading';
 import Company from '../pages/company';
 import Investment from '../pages/investment';
 import TopMarket from '../pages/topmarket';
+import AiTrading from '../pages/ai';
 
 
 import Dashboard from '../pages/dashboard';
@@ -29,6 +30,7 @@ import AdminTraders from '../admin/adminTraders';
 import Activities from '../admin/adminActivities';
 import AdminSettings from '../admin/adminSettings';
 import ManageUser from '../admin/adminManagUser';
+import AiTradingAdmin from '../admin/aiTradingadmin';
 
 
 import ProtectedRoute from '../config/Hooks/protectedRoute';
@@ -62,6 +64,8 @@ function App() {
         <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
         <Route path="/profile/:username" element={<ProtectedRoute><CopyTraderProfile /></ProtectedRoute>} />
         <Route path="/manage/:username" element={<ProtectedRoute><ManageUser /></ProtectedRoute>} />
+        <Route path="/ai trade" element={<ProtectedRoute><AiTrading /></ProtectedRoute>} />
+
 
 
         {/* Admin Role-Protected Routes */}
@@ -70,6 +74,7 @@ function App() {
         <Route path="/admin/traders" element={<RoleProtectedRoute><AdminTraders /></RoleProtectedRoute>} />
         <Route path="/admin/activities" element={<RoleProtectedRoute><Activities /></RoleProtectedRoute>} />
         <Route path="/admin/settings" element={<RoleProtectedRoute><AdminSettings /></RoleProtectedRoute>} />
+           <Route path="/admin/ai trade" element={<RoleProtectedRoute><AiTradingAdmin /></RoleProtectedRoute>} />
       </Routes>
     </Router>
   );
