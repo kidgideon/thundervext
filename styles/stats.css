@@ -90,3 +90,16 @@
     max-width: 165px;
    }
 }
+
+@media (max-width: 375px) {
+  .stats-x12 {
+    max-width: 145px;
+   }
+}
+
+
+@media (max-width: 325px) {
+  .stats-x12 {
+    max-width: 120px;
+   }
+}
