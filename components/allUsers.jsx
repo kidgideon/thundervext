@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { db } from "../config/config";
 import { toast } from "sonner";
 import "../styles/allUsers.css";
+import image from "../images/pic.webp"
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
@@ -87,7 +88,7 @@ const AllUsers = () => {
         {users.map((user) => (
           <div className="x-user-card" key={user.id}>
             <img
-              src={user.picture}
+              src={user.picture || image}
               alt="Profile"
               className="x-user-avatar"
             />

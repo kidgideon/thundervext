@@ -6,7 +6,6 @@ const Activites = () => {
     return(<div className="admin-container">
  <AdminNavbar/>
 <div className="area">
-<AdminCopyTrade/>
  <AllUsers/>
 </div>
     </div>)

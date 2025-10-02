@@ -253,8 +253,7 @@ const Payment = () => {
           ))}
         </div>
 
-        <AdminCopyTrade/>
-
+      
         <div className="payment-requests">
           <h2>payment requests</h2>
           <div className="filter-buttons">

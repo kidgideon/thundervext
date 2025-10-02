@@ -162,7 +162,7 @@ const CreateRobots = () => {
 
   return (
     <div className="create-robot-admin-mx90">
-      <h2>Create Robot</h2>
+      <h2>Create Ai</h2>
 
       {/* Create Form */}
       <form onSubmit={addRobot} className="robot-form-mx90">
@@ -217,7 +217,7 @@ const CreateRobots = () => {
         />
 
         <button type="submit" disabled={loading}>
-          {loading ? "Loading..." : "Add Robot"}
+          {loading ? "Loading..." : "Add AI"}
         </button>
       </form>
 
